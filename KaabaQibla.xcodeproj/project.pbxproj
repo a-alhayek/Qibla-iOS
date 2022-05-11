@@ -16,6 +16,13 @@
 		0C554D4D282B595000BD24D3 /* KaabaQiblaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D4C282B595000BD24D3 /* KaabaQiblaTests.swift */; };
 		0C554D57282B595000BD24D3 /* KaabaQiblaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D56282B595000BD24D3 /* KaabaQiblaUITests.swift */; };
 		0C554D59282B595000BD24D3 /* KaabaQiblaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D58282B595000BD24D3 /* KaabaQiblaUITestsLaunchTests.swift */; };
+		0C554D67282B5A6C00BD24D3 /* KaabaHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D66282B5A6C00BD24D3 /* KaabaHeading.swift */; };
+		0C554D6A282B5C4C00BD24D3 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D69282B5C4C00BD24D3 /* RestClient.swift */; };
+		0C554D6C282B5C8300BD24D3 /* RestPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D6B282B5C8300BD24D3 /* RestPerformer.swift */; };
+		0C554D6E282B5D5700BD24D3 /* RestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D6D282B5D5700BD24D3 /* RestRequest.swift */; };
+		0C554D71282B5E8100BD24D3 /* QiblaRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D70282B5E8100BD24D3 /* QiblaRoutes.swift */; };
+		0CB60E76282BCB9600552392 /* QiblaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB60E75282BCB9600552392 /* QiblaView.swift */; };
+		0CB60E79282BCBF500552392 /* QiblaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB60E78282BCBF500552392 /* QiblaViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +55,14 @@
 		0C554D52282B595000BD24D3 /* KaabaQiblaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaabaQiblaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C554D56282B595000BD24D3 /* KaabaQiblaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaabaQiblaUITests.swift; sourceTree = "<group>"; };
 		0C554D58282B595000BD24D3 /* KaabaQiblaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaabaQiblaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0C554D66282B5A6C00BD24D3 /* KaabaHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaabaHeading.swift; sourceTree = "<group>"; };
+		0C554D69282B5C4C00BD24D3 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
+		0C554D6B282B5C8300BD24D3 /* RestPerformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestPerformer.swift; sourceTree = "<group>"; };
+		0C554D6D282B5D5700BD24D3 /* RestRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestRequest.swift; sourceTree = "<group>"; };
+		0C554D70282B5E8100BD24D3 /* QiblaRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaRoutes.swift; sourceTree = "<group>"; };
+		0CB60E75282BCB9600552392 /* QiblaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaView.swift; sourceTree = "<group>"; };
+		0CB60E78282BCBF500552392 /* QiblaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaViewModel.swift; sourceTree = "<group>"; };
+		0CB60E7A282BD3DB00552392 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +113,11 @@
 		0C554D35282B594C00BD24D3 /* KaabaQibla */ = {
 			isa = PBXGroup;
 			children = (
+				0CB60E7A282BD3DB00552392 /* Info.plist */,
+				0CB60E77282BCBBA00552392 /* QiblaViews */,
+				0C554D6F282B5E5700BD24D3 /* Routes */,
+				0C554D68282B5C3B00BD24D3 /* Network */,
+				0C554D65282B5A2C00BD24D3 /* Models */,
 				0C554D36282B594C00BD24D3 /* KaabaQiblaApp.swift */,
 				0C554D38282B594C00BD24D3 /* ContentView.swift */,
 				0C554D3A282B594F00BD24D3 /* Assets.xcassets */,
@@ -131,6 +151,41 @@
 				0C554D58282B595000BD24D3 /* KaabaQiblaUITestsLaunchTests.swift */,
 			);
 			path = KaabaQiblaUITests;
+			sourceTree = "<group>";
+		};
+		0C554D65282B5A2C00BD24D3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0C554D66282B5A6C00BD24D3 /* KaabaHeading.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0C554D68282B5C3B00BD24D3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0C554D69282B5C4C00BD24D3 /* RestClient.swift */,
+				0C554D6B282B5C8300BD24D3 /* RestPerformer.swift */,
+				0C554D6D282B5D5700BD24D3 /* RestRequest.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		0C554D6F282B5E5700BD24D3 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				0C554D70282B5E8100BD24D3 /* QiblaRoutes.swift */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
+		0CB60E77282BCBBA00552392 /* QiblaViews */ = {
+			isa = PBXGroup;
+			children = (
+				0CB60E75282BCB9600552392 /* QiblaView.swift */,
+				0CB60E78282BCBF500552392 /* QiblaViewModel.swift */,
+			);
+			path = QiblaViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,8 +319,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C554D43282B594F00BD24D3 /* KaabaQibla.xcdatamodeld in Sources */,
+				0CB60E79282BCBF500552392 /* QiblaViewModel.swift in Sources */,
+				0C554D6C282B5C8300BD24D3 /* RestPerformer.swift in Sources */,
+				0C554D67282B5A6C00BD24D3 /* KaabaHeading.swift in Sources */,
+				0C554D6E282B5D5700BD24D3 /* RestRequest.swift in Sources */,
 				0C554D40282B594F00BD24D3 /* Persistence.swift in Sources */,
 				0C554D39282B594C00BD24D3 /* ContentView.swift in Sources */,
+				0CB60E76282BCB9600552392 /* QiblaView.swift in Sources */,
+				0C554D6A282B5C4C00BD24D3 /* RestClient.swift in Sources */,
+				0C554D71282B5E8100BD24D3 /* QiblaRoutes.swift in Sources */,
 				0C554D37282B594C00BD24D3 /* KaabaQiblaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,6 +492,9 @@
 				DEVELOPMENT_TEAM = XZ3BC9877T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KaabaQibla/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -459,6 +524,9 @@
 				DEVELOPMENT_TEAM = XZ3BC9877T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KaabaQibla/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
