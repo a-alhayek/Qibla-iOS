@@ -1,0 +1,611 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C554D37282B594C00BD24D3 /* KaabaQiblaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D36282B594C00BD24D3 /* KaabaQiblaApp.swift */; };
+		0C554D39282B594C00BD24D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D38282B594C00BD24D3 /* ContentView.swift */; };
+		0C554D3B282B594F00BD24D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C554D3A282B594F00BD24D3 /* Assets.xcassets */; };
+		0C554D3E282B594F00BD24D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C554D3D282B594F00BD24D3 /* Preview Assets.xcassets */; };
+		0C554D40282B594F00BD24D3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D3F282B594F00BD24D3 /* Persistence.swift */; };
+		0C554D43282B594F00BD24D3 /* KaabaQibla.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D41282B594F00BD24D3 /* KaabaQibla.xcdatamodeld */; };
+		0C554D4D282B595000BD24D3 /* KaabaQiblaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D4C282B595000BD24D3 /* KaabaQiblaTests.swift */; };
+		0C554D57282B595000BD24D3 /* KaabaQiblaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D56282B595000BD24D3 /* KaabaQiblaUITests.swift */; };
+		0C554D59282B595000BD24D3 /* KaabaQiblaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D58282B595000BD24D3 /* KaabaQiblaUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0C554D49282B595000BD24D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C554D2B282B594C00BD24D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C554D32282B594C00BD24D3;
+			remoteInfo = KaabaQibla;
+		};
+		0C554D53282B595000BD24D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C554D2B282B594C00BD24D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C554D32282B594C00BD24D3;
+			remoteInfo = KaabaQibla;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0C554D33282B594C00BD24D3 /* KaabaQibla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KaabaQibla.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C554D36282B594C00BD24D3 /* KaabaQiblaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaabaQiblaApp.swift; sourceTree = "<group>"; };
+		0C554D38282B594C00BD24D3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0C554D3A282B594F00BD24D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0C554D3D282B594F00BD24D3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0C554D3F282B594F00BD24D3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		0C554D42282B594F00BD24D3 /* KaabaQibla.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KaabaQibla.xcdatamodel; sourceTree = "<group>"; };
+		0C554D48282B595000BD24D3 /* KaabaQiblaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaabaQiblaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C554D4C282B595000BD24D3 /* KaabaQiblaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaabaQiblaTests.swift; sourceTree = "<group>"; };
+		0C554D52282B595000BD24D3 /* KaabaQiblaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaabaQiblaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C554D56282B595000BD24D3 /* KaabaQiblaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaabaQiblaUITests.swift; sourceTree = "<group>"; };
+		0C554D58282B595000BD24D3 /* KaabaQiblaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaabaQiblaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0C554D30282B594C00BD24D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C554D45282B595000BD24D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C554D4F282B595000BD24D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C554D2A282B594C00BD24D3 = {
+			isa = PBXGroup;
+			children = (
+				0C554D35282B594C00BD24D3 /* KaabaQibla */,
+				0C554D4B282B595000BD24D3 /* KaabaQiblaTests */,
+				0C554D55282B595000BD24D3 /* KaabaQiblaUITests */,
+				0C554D34282B594C00BD24D3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0C554D34282B594C00BD24D3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0C554D33282B594C00BD24D3 /* KaabaQibla.app */,
+				0C554D48282B595000BD24D3 /* KaabaQiblaTests.xctest */,
+				0C554D52282B595000BD24D3 /* KaabaQiblaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0C554D35282B594C00BD24D3 /* KaabaQibla */ = {
+			isa = PBXGroup;
+			children = (
+				0C554D36282B594C00BD24D3 /* KaabaQiblaApp.swift */,
+				0C554D38282B594C00BD24D3 /* ContentView.swift */,
+				0C554D3A282B594F00BD24D3 /* Assets.xcassets */,
+				0C554D3F282B594F00BD24D3 /* Persistence.swift */,
+				0C554D41282B594F00BD24D3 /* KaabaQibla.xcdatamodeld */,
+				0C554D3C282B594F00BD24D3 /* Preview Content */,
+			);
+			path = KaabaQibla;
+			sourceTree = "<group>";
+		};
+		0C554D3C282B594F00BD24D3 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				0C554D3D282B594F00BD24D3 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0C554D4B282B595000BD24D3 /* KaabaQiblaTests */ = {
+			isa = PBXGroup;
+			children = (
+				0C554D4C282B595000BD24D3 /* KaabaQiblaTests.swift */,
+			);
+			path = KaabaQiblaTests;
+			sourceTree = "<group>";
+		};
+		0C554D55282B595000BD24D3 /* KaabaQiblaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0C554D56282B595000BD24D3 /* KaabaQiblaUITests.swift */,
+				0C554D58282B595000BD24D3 /* KaabaQiblaUITestsLaunchTests.swift */,
+			);
+			path = KaabaQiblaUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0C554D32282B594C00BD24D3 /* KaabaQibla */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C554D5C282B595000BD24D3 /* Build configuration list for PBXNativeTarget "KaabaQibla" */;
+			buildPhases = (
+				0C554D2F282B594C00BD24D3 /* Sources */,
+				0C554D30282B594C00BD24D3 /* Frameworks */,
+				0C554D31282B594C00BD24D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KaabaQibla;
+			productName = KaabaQibla;
+			productReference = 0C554D33282B594C00BD24D3 /* KaabaQibla.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0C554D47282B595000BD24D3 /* KaabaQiblaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C554D5F282B595000BD24D3 /* Build configuration list for PBXNativeTarget "KaabaQiblaTests" */;
+			buildPhases = (
+				0C554D44282B595000BD24D3 /* Sources */,
+				0C554D45282B595000BD24D3 /* Frameworks */,
+				0C554D46282B595000BD24D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0C554D4A282B595000BD24D3 /* PBXTargetDependency */,
+			);
+			name = KaabaQiblaTests;
+			productName = KaabaQiblaTests;
+			productReference = 0C554D48282B595000BD24D3 /* KaabaQiblaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0C554D51282B595000BD24D3 /* KaabaQiblaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C554D62282B595000BD24D3 /* Build configuration list for PBXNativeTarget "KaabaQiblaUITests" */;
+			buildPhases = (
+				0C554D4E282B595000BD24D3 /* Sources */,
+				0C554D4F282B595000BD24D3 /* Frameworks */,
+				0C554D50282B595000BD24D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0C554D54282B595000BD24D3 /* PBXTargetDependency */,
+			);
+			name = KaabaQiblaUITests;
+			productName = KaabaQiblaUITests;
+			productReference = 0C554D52282B595000BD24D3 /* KaabaQiblaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0C554D2B282B594C00BD24D3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					0C554D32282B594C00BD24D3 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					0C554D47282B595000BD24D3 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 0C554D32282B594C00BD24D3;
+					};
+					0C554D51282B595000BD24D3 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 0C554D32282B594C00BD24D3;
+					};
+				};
+			};
+			buildConfigurationList = 0C554D2E282B594C00BD24D3 /* Build configuration list for PBXProject "KaabaQibla" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0C554D2A282B594C00BD24D3;
+			productRefGroup = 0C554D34282B594C00BD24D3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0C554D32282B594C00BD24D3 /* KaabaQibla */,
+				0C554D47282B595000BD24D3 /* KaabaQiblaTests */,
+				0C554D51282B595000BD24D3 /* KaabaQiblaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0C554D31282B594C00BD24D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C554D3E282B594F00BD24D3 /* Preview Assets.xcassets in Resources */,
+				0C554D3B282B594F00BD24D3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C554D46282B595000BD24D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C554D50282B595000BD24D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0C554D2F282B594C00BD24D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C554D43282B594F00BD24D3 /* KaabaQibla.xcdatamodeld in Sources */,
+				0C554D40282B594F00BD24D3 /* Persistence.swift in Sources */,
+				0C554D39282B594C00BD24D3 /* ContentView.swift in Sources */,
+				0C554D37282B594C00BD24D3 /* KaabaQiblaApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C554D44282B595000BD24D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C554D4D282B595000BD24D3 /* KaabaQiblaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C554D4E282B595000BD24D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C554D57282B595000BD24D3 /* KaabaQiblaUITests.swift in Sources */,
+				0C554D59282B595000BD24D3 /* KaabaQiblaUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0C554D4A282B595000BD24D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0C554D32282B594C00BD24D3 /* KaabaQibla */;
+			targetProxy = 0C554D49282B595000BD24D3 /* PBXContainerItemProxy */;
+		};
+		0C554D54282B595000BD24D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0C554D32282B594C00BD24D3 /* KaabaQibla */;
+			targetProxy = 0C554D53282B595000BD24D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0C554D5A282B595000BD24D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0C554D5B282B595000BD24D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0C554D5D282B595000BD24D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KaabaQibla/Preview Content\"";
+				DEVELOPMENT_TEAM = XZ3BC9877T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = a7mad.KaabaQibla;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0C554D5E282B595000BD24D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KaabaQibla/Preview Content\"";
+				DEVELOPMENT_TEAM = XZ3BC9877T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = a7mad.KaabaQibla;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0C554D60282B595000BD24D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XZ3BC9877T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = a7mad.KaabaQiblaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KaabaQibla.app/KaabaQibla";
+			};
+			name = Debug;
+		};
+		0C554D61282B595000BD24D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XZ3BC9877T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = a7mad.KaabaQiblaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KaabaQibla.app/KaabaQibla";
+			};
+			name = Release;
+		};
+		0C554D63282B595000BD24D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XZ3BC9877T;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = a7mad.KaabaQiblaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KaabaQibla;
+			};
+			name = Debug;
+		};
+		0C554D64282B595000BD24D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XZ3BC9877T;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = a7mad.KaabaQiblaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KaabaQibla;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C554D2E282B594C00BD24D3 /* Build configuration list for PBXProject "KaabaQibla" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C554D5A282B595000BD24D3 /* Debug */,
+				0C554D5B282B595000BD24D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0C554D5C282B595000BD24D3 /* Build configuration list for PBXNativeTarget "KaabaQibla" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C554D5D282B595000BD24D3 /* Debug */,
+				0C554D5E282B595000BD24D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0C554D5F282B595000BD24D3 /* Build configuration list for PBXNativeTarget "KaabaQiblaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C554D60282B595000BD24D3 /* Debug */,
+				0C554D61282B595000BD24D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0C554D62282B595000BD24D3 /* Build configuration list for PBXNativeTarget "KaabaQiblaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C554D63282B595000BD24D3 /* Debug */,
+				0C554D64282B595000BD24D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0C554D41282B594F00BD24D3 /* KaabaQibla.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0C554D42282B594F00BD24D3 /* KaabaQibla.xcdatamodel */,
+			);
+			currentVersion = 0C554D42282B594F00BD24D3 /* KaabaQibla.xcdatamodel */;
+			path = KaabaQibla.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 0C554D2B282B594C00BD24D3 /* Project object */;
+}
