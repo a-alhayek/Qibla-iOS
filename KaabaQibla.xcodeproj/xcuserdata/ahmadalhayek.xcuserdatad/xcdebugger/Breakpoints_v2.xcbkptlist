@@ -7,32 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "803EEB27-DA05-421D-9F0D-BE5B9B276F30"
+            uuid = "2E7165E6-11A2-45B5-930C-15A181B296D7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KaabaQibla/QiblaViews/QiblaViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "fetchQibla(for:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2CF88435-8421-4C65-B9B6-798B834EF7B4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KaabaQibla/QiblaViews/QiblaViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "fetchQibla(for:)"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "locationManager(_:didUpdateHeading:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

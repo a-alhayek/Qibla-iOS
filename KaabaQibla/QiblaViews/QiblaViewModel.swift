@@ -11,6 +11,7 @@ import CoreLocation
 
 class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var currentQibla: KaabaHeading?
+    @Published var currentUserHeading: Double?
     @Published var error: Error?
     var deviceLastLocation: CLLocation? {
         didSet {
@@ -33,11 +34,13 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
     }
 
     func requestPermission() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -48,6 +51,14 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationPermissionState = manager.authorizationStatus
         locationManager.startUpdatingLocation()
         deviceLastLocation = manager.location
+    }
+
+    func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool {
+        true
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        currentUserHeading = newHeading.magneticHeading
     }
 
     private func fetchQibla(for coordinate: CLLocationCoordinate2D) {

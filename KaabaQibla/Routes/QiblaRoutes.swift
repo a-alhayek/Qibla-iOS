@@ -44,7 +44,7 @@ enum QiblaRoutes: RestRequest {
     }
 
     var urlRequest: URLRequest {
-        var url = URLComponents.init(url: baseURL.appendingPathComponent(path), resolvingAgainstBaseURL: true)!
+        let url = URLComponents.init(url: baseURL.appendingPathComponent(path), resolvingAgainstBaseURL: true)!
       //  url.queryItems = parameters
         var request = URLRequest(url: url.url!)
         request.httpMethod = httpMethod.rawValue

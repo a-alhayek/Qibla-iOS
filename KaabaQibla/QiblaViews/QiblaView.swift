@@ -9,8 +9,12 @@ import SwiftUI
 
 struct QiblaView: View {
     @EnvironmentObject var qiblaModel: QiblaViewModel
-    var kaabaHeading: KaabaHeading? {
-        qiblaModel.currentQibla
+    var kaabaHeading: Double {
+        qiblaModel.currentQibla?.data.direction ?? 0
+    }
+
+    var userHeading: Double {
+        qiblaModel.currentUserHeading ?? 0
     }
     var body: some View {
         switch qiblaModel.locationPermissionState {
@@ -18,7 +22,10 @@ struct QiblaView: View {
             requestAuthorization
         case .authorized, .authorizedAlways, .authorizedWhenInUse:
             HStack {
-                Text(String(kaabaHeading?.data.direction ?? 0))
+                VStack {
+                    Text(String(kaabaHeading))
+                    Text(String(userHeading))
+                }
             }
         default:
             Text("Unexpected")
