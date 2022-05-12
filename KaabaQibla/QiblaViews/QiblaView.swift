@@ -31,9 +31,18 @@ struct QiblaView: View {
     var userHeading: Int {
         Int(qiblaModel.currentUserHeading ?? 0)
     }
+
+    var locationDecription: String {
+        guard let city = qiblaModel.placemark?.locality,
+              let state = qiblaModel.placemark?.administrativeArea
+        else { return ""}
+        return city + ", " + state
+    }
     var body: some View {
-        VStack {
+        VStack(spacing: 40) {
             qibla
+            Text("\(userHeading)°")
+            Text(locationDecription).font(.title2).bold()
         }
     }
     

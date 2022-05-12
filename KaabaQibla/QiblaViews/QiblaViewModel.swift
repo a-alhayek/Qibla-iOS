@@ -13,6 +13,7 @@ import CoreLocation
 class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var currentQibla: KaabaHeading?
     @Published var currentUserHeading: Double?
+    @Published var placemark: CLPlacemark?
     @Published var error: Error?
     let generator = UIImpactFeedbackGenerator(style: .medium)
     var deviceLastLocation: CLLocation? {
@@ -47,6 +48,7 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         deviceLastLocation = locations.first
+        fetchCountryAndCity(for: locations.first)
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -84,5 +86,13 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }, receiveValue: { [weak self] KaabaHeading in
             self?.currentQibla = KaabaHeading
         }).store(in: &subscriptions)
+    }
+
+    private func fetchCountryAndCity(for location: CLLocation?) {
+        guard let location = location else { return }
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+           self.placemark = placemarks?.first
+        }
     }
 }
