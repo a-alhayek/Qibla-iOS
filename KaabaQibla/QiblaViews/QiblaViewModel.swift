@@ -7,12 +7,14 @@
 
 import Foundation
 import Combine
+import UIKit
 import CoreLocation
 
 class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var currentQibla: KaabaHeading?
     @Published var currentUserHeading: Double?
     @Published var error: Error?
+    let generator = UIImpactFeedbackGenerator(style: .medium)
     var deviceLastLocation: CLLocation? {
         didSet {
             if let location = deviceLastLocation {
@@ -59,10 +61,19 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         currentUserHeading = newHeading.magneticHeading
+        guard let userHeading = currentUserHeading, let kaabaHeading = currentQibla?.data.direction else {
+            return
+        }
+        if Int(userHeading) == Int(kaabaHeading) {
+            generator.impactOccurred()
+        }
 
     }
 
     private func fetchQibla(for coordinate: CLLocationCoordinate2D) {
+        subscriptions.forEach {
+            $0.cancel()
+        }
         qiblaClient.getQibla(for: coordinate).receive(on: DispatchQueue.main).sink(receiveCompletion: { [weak self] completion in
             switch completion {
             case .finished:
@@ -73,11 +84,5 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }, receiveValue: { [weak self] KaabaHeading in
             self?.currentQibla = KaabaHeading
         }).store(in: &subscriptions)
-    }
-
-    deinit {
-        subscriptions.forEach {
-            $0.cancel()
-        }
     }
 }

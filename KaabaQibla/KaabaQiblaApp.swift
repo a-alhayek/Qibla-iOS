@@ -13,7 +13,7 @@ struct KaabaQiblaApp: App {
 
     var body: some Scene {
         WindowGroup {
-            QiblaView().environmentObject(QiblaViewModel())
+            QiblaHomeScreen().environmentObject(QiblaViewModel())
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
