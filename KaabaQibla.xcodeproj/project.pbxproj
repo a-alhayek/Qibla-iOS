@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0C554D37282B594C00BD24D3 /* KaabaQiblaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D36282B594C00BD24D3 /* KaabaQiblaApp.swift */; };
-		0C554D39282B594C00BD24D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D38282B594C00BD24D3 /* ContentView.swift */; };
 		0C554D3B282B594F00BD24D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C554D3A282B594F00BD24D3 /* Assets.xcassets */; };
 		0C554D3E282B594F00BD24D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C554D3D282B594F00BD24D3 /* Preview Assets.xcassets */; };
-		0C554D40282B594F00BD24D3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D3F282B594F00BD24D3 /* Persistence.swift */; };
 		0C554D43282B594F00BD24D3 /* KaabaQibla.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D41282B594F00BD24D3 /* KaabaQibla.xcdatamodeld */; };
 		0C554D4D282B595000BD24D3 /* KaabaQiblaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D4C282B595000BD24D3 /* KaabaQiblaTests.swift */; };
 		0C554D57282B595000BD24D3 /* KaabaQiblaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D56282B595000BD24D3 /* KaabaQiblaUITests.swift */; };
@@ -45,10 +43,8 @@
 /* Begin PBXFileReference section */
 		0C554D33282B594C00BD24D3 /* KaabaQibla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KaabaQibla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C554D36282B594C00BD24D3 /* KaabaQiblaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaabaQiblaApp.swift; sourceTree = "<group>"; };
-		0C554D38282B594C00BD24D3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0C554D3A282B594F00BD24D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C554D3D282B594F00BD24D3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		0C554D3F282B594F00BD24D3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		0C554D42282B594F00BD24D3 /* KaabaQibla.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KaabaQibla.xcdatamodel; sourceTree = "<group>"; };
 		0C554D48282B595000BD24D3 /* KaabaQiblaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaabaQiblaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C554D4C282B595000BD24D3 /* KaabaQiblaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaabaQiblaTests.swift; sourceTree = "<group>"; };
@@ -119,9 +115,7 @@
 				0C554D68282B5C3B00BD24D3 /* Network */,
 				0C554D65282B5A2C00BD24D3 /* Models */,
 				0C554D36282B594C00BD24D3 /* KaabaQiblaApp.swift */,
-				0C554D38282B594C00BD24D3 /* ContentView.swift */,
 				0C554D3A282B594F00BD24D3 /* Assets.xcassets */,
-				0C554D3F282B594F00BD24D3 /* Persistence.swift */,
 				0C554D41282B594F00BD24D3 /* KaabaQibla.xcdatamodeld */,
 				0C554D3C282B594F00BD24D3 /* Preview Content */,
 			);
@@ -323,8 +317,6 @@
 				0C554D6C282B5C8300BD24D3 /* RestPerformer.swift in Sources */,
 				0C554D67282B5A6C00BD24D3 /* KaabaHeading.swift in Sources */,
 				0C554D6E282B5D5700BD24D3 /* RestRequest.swift in Sources */,
-				0C554D40282B594F00BD24D3 /* Persistence.swift in Sources */,
-				0C554D39282B594C00BD24D3 /* ContentView.swift in Sources */,
 				0CB60E76282BCB9600552392 /* QiblaView.swift in Sources */,
 				0C554D6A282B5C4C00BD24D3 /* RestClient.swift in Sources */,
 				0C554D71282B5E8100BD24D3 /* QiblaRoutes.swift in Sources */,
@@ -498,8 +490,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -530,8 +523,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

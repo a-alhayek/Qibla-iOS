@@ -59,6 +59,7 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         currentUserHeading = newHeading.magneticHeading
+
     }
 
     private func fetchQibla(for coordinate: CLLocationCoordinate2D) {
