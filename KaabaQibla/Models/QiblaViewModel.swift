@@ -11,10 +11,10 @@ import UIKit
 import CoreLocation
 
 class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
-    @Published var currentQibla: KaabaHeading?
-    @Published var currentUserHeading: Double?
-    @Published var placemark: CLPlacemark?
-    @Published var error: Error?
+    @Published private (set) var currentQibla: KaabaHeading?
+    @Published private (set) var currentUserHeading: Double?
+    @Published private (set) var placemark: CLPlacemark?
+    @Published private (set) var error: Error?
     let generator = UIImpactFeedbackGenerator(style: .medium)
     var deviceLastLocation: CLLocation? {
         didSet {
@@ -62,21 +62,36 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        setNewHeadingIfHeadingIsValid(newHeading)
+        checkIfQiblaMatchesUserHeadingAndGenerateFeedback()
+    }
+
+    private func throwInvalidHeadingError() {
         let qiblaError = (error as? QiblaError)
-        guard newHeading.headingAccuracy > 0 && qiblaError != QiblaError.invalidHeadingAccuracy else {
-            if qiblaError != nil { return }
-            error = QiblaError.invalidHeadingAccuracy
-            return
-        }
-        error = nil
-        currentUserHeading = newHeading.magneticHeading
+        guard qiblaError != QiblaError.invalidHeadingAccuracy else { return }
+        error = QiblaError.invalidHeadingAccuracy
+    }
+
+    private func checkIfQiblaMatchesUserHeadingAndGenerateFeedback() {
         guard let userHeading = currentUserHeading, let kaabaHeading = currentQibla?.data.direction else {
             return
         }
-        if Int(userHeading) == Int(kaabaHeading) {
+
+        generateFeedbackIfTwoElementsAreEqual(Int(userHeading), Int(kaabaHeading))
+    }
+
+    private func setNewHeadingIfHeadingIsValid(_ newHeading: CLHeading) {
+        guard newHeading.headingAccuracy > 0 else {
+            throwInvalidHeadingError()
+            return
+        }
+        currentUserHeading = newHeading.magneticHeading
+    }
+
+    private func generateFeedbackIfTwoElementsAreEqual<T>(_ lhs: T, _ rhs: T) where T: Equatable {
+        if lhs == rhs {
             generator.impactOccurred()
         }
-
     }
 
     private func fetchQibla(for coordinate: CLLocationCoordinate2D) {
