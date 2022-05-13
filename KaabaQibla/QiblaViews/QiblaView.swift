@@ -43,7 +43,7 @@ struct QiblaView: View {
             qibla
             Text("\(userHeading)°")
             Text(locationDecription).font(.title2).bold()
-        }
+        }.alertQiblaError($qiblaModel.error)
     }
     
     var qibla: some View {
@@ -73,7 +73,7 @@ struct QiblaView_Previews: PreviewProvider {
     }
 }
 
-extension View {
+fileprivate extension View {
     func alertQiblaError(_ error: Binding<Error?>, buttonTitle: String = "Dismiss") -> some View {
         let qiblaError = error.wrappedValue as? QiblaError
         return alert(isPresented: .constant(qiblaError != nil), error: qiblaError) { _ in
