@@ -10,7 +10,7 @@ import Combine
 import UIKit
 import CoreLocation
 
-class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+class QiblaViewModel: NSObject, ObservableObject {
     @Published private (set) var currentQibla: KaabaHeading?
     @Published private (set) var currentUserHeading: Double?
     @Published private (set) var placemark: CLPlacemark?
@@ -34,7 +34,7 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.qiblaClient = qiblaClient
         locationPermissionState = locationManager.authorizationStatus
         super.init()
-        self.qiblaFetcher.delegate = self
+        self.qiblaFetcher.qiblaFetcherDelegate = self
         UIDevice.current.batteryState == .charging ? (self.qiblaFetcher.desiredAccuracy = kCLLocationAccuracyBestForNavigation)
         : (self.qiblaFetcher.desiredAccuracy = kCLLocationAccuracyBest)
         subscribeToLocationManager()
@@ -49,23 +49,8 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         qiblaFetcher.startUpdatingHeading()
     }
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        deviceLastLocation = locations.first
-        fetchCountryAndCity(for: locations.first)
-    }
-
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        locationPermissionState = manager.authorizationStatus
-        subscribeToLocationManager()
-    }
-
     func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool {
         true
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        setNewHeadingIfHeadingIsValid(newHeading)
-        checkIfQiblaMatchesUserHeadingAndGenerateFeedback()
     }
 
     private func throwInvalidHeadingError() {
@@ -118,6 +103,37 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
            self.placemark = placemarks?.first
         }
+    }
+}
+
+extension QiblaViewModel: QiblaFetcherDelegate {
+    func locationManager(_ manager: QiblaFetcher, didUpdateHeading newHeading: CLHeading) {
+        setNewHeadingIfHeadingIsValid(newHeading)
+        checkIfQiblaMatchesUserHeadingAndGenerateFeedback()
+    }
+
+    func locationManagerDidChangeAuthorization(_ manager: QiblaFetcher) {
+        locationPermissionState = manager.authorizationStatus
+        subscribeToLocationManager()
+    }
+
+    func locationManager(_ manager: QiblaFetcher, didUpdateLocations locations: [CLLocation]) {
+        deviceLastLocation = locations.first
+        fetchCountryAndCity(for: locations.first)
+    }
+}
+
+extension QiblaViewModel: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        self.locationManager(manager, didUpdateHeading: newHeading)
+    }
+
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        self.locationManagerDidChangeAuthorization(manager)
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.locationManager(manager, didUpdateLocations: locations)
     }
 }
 
