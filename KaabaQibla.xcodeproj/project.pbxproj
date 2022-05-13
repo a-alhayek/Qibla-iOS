@@ -11,6 +11,7 @@
 		0C364E8C282D13A0006975CF /* KabbaImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C364E8B282D13A0006975CF /* KabbaImage.swift */; };
 		0C364E8E282D14A7006975CF /* QiblaHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C364E8D282D14A7006975CF /* QiblaHomeScreen.swift */; };
 		0C364E92282F0AE4006975CF /* QiblaFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C364E91282F0AE4006975CF /* QiblaFetcher.swift */; };
+		0C364E94282F1276006975CF /* QiblaViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C364E93282F1276006975CF /* QiblaViewModelTests.swift */; };
 		0C554D37282B594C00BD24D3 /* KaabaQiblaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D36282B594C00BD24D3 /* KaabaQiblaApp.swift */; };
 		0C554D3B282B594F00BD24D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C554D3A282B594F00BD24D3 /* Assets.xcassets */; };
 		0C554D3E282B594F00BD24D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C554D3D282B594F00BD24D3 /* Preview Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		0C364E8B282D13A0006975CF /* KabbaImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KabbaImage.swift; sourceTree = "<group>"; };
 		0C364E8D282D14A7006975CF /* QiblaHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaHomeScreen.swift; sourceTree = "<group>"; };
 		0C364E91282F0AE4006975CF /* QiblaFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaFetcher.swift; sourceTree = "<group>"; };
+		0C364E93282F1276006975CF /* QiblaViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaViewModelTests.swift; sourceTree = "<group>"; };
 		0C554D33282B594C00BD24D3 /* KaabaQibla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KaabaQibla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C554D36282B594C00BD24D3 /* KaabaQiblaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaabaQiblaApp.swift; sourceTree = "<group>"; };
 		0C554D3A282B594F00BD24D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		0C554D4B282B595000BD24D3 /* KaabaQiblaTests */ = {
 			isa = PBXGroup;
 			children = (
+				0C364E93282F1276006975CF /* QiblaViewModelTests.swift */,
 				0C554D4C282B595000BD24D3 /* KaabaQiblaTests.swift */,
 			);
 			path = KaabaQiblaTests;
@@ -344,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C364E94282F1276006975CF /* QiblaViewModelTests.swift in Sources */,
 				0C554D4D282B595000BD24D3 /* KaabaQiblaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
