@@ -62,6 +62,11 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        if newHeading.headingAccuracy < 0 && (error as? QiblaError) != QiblaError.invalidHeadingAccuracy {
+            error = QiblaError.invalidHeadingAccuracy
+            return
+        }
+        error = nil
         currentUserHeading = newHeading.magneticHeading
         guard let userHeading = currentUserHeading, let kaabaHeading = currentQibla?.data.direction else {
             return
@@ -93,6 +98,30 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
            self.placemark = placemarks?.first
+        }
+    }
+}
+
+enum QiblaError: LocalizedError {
+    case invalidHeadingAccuracy
+
+    var errorDescription: String? {
+        return description
+    }
+
+    var recoverySuggestion: String? {
+        switch self {
+        case .invalidHeadingAccuracy:
+            return "try to stand still or stay away from any strong magnetic field"
+        }
+    }
+}
+
+extension QiblaError: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .invalidHeadingAccuracy:
+            return "the compass cannot get a good reading at the moment."
         }
     }
 }
