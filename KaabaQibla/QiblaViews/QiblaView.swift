@@ -72,3 +72,16 @@ struct QiblaView_Previews: PreviewProvider {
         
     }
 }
+
+extension View {
+    func alertQiblaError(_ error: Binding<Error?>, buttonTitle: String = "Dismiss") -> some View {
+        let qiblaError = error.wrappedValue as? QiblaError
+        return alert(isPresented: .constant(qiblaError != nil), error: qiblaError) { _ in
+            Button(buttonTitle) {
+                error.wrappedValue = nil
+            }
+        } message: { error in
+            Text(error.description)
+        }
+    }
+}
