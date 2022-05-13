@@ -11,7 +11,7 @@ import CoreLocation
 @testable import KaabaQibla
 
 class QiblaViewModelTests: XCTestCase {
-    struct MockQiblaViewModel: QiblaFetcher {
+    struct MockQiblaFetcher: QiblaFetcher {
         weak var qiblaFetcherDelegate: QiblaFetcherDelegate?
 
         var desiredAccuracy: CLLocationAccuracy = 0
@@ -28,7 +28,6 @@ class QiblaViewModelTests: XCTestCase {
         }
         
         func requestWhenInUseAuthorization() {
-            sleep(12)
             qiblaFetcherDelegate?.locationManagerDidChangeAuthorization(self)
         }
 
@@ -45,11 +44,15 @@ class QiblaViewModelTests: XCTestCase {
             nil
         ]
     }
+
+    var qiblaViewModel: QiblaViewModel!
     override func setUpWithError() throws {
+        qiblaViewModel = .init(locationManager: MockQiblaFetcher())
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
+        qiblaViewModel = nil
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
