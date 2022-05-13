@@ -62,7 +62,9 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        if newHeading.headingAccuracy < 0 && (error as? QiblaError) != QiblaError.invalidHeadingAccuracy {
+        let qiblaError = (error as? QiblaError)
+        guard newHeading.headingAccuracy > 0 && qiblaError != QiblaError.invalidHeadingAccuracy else {
+            if qiblaError != nil { return }
             error = QiblaError.invalidHeadingAccuracy
             return
         }
