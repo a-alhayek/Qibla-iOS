@@ -35,7 +35,8 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationPermissionState = locationManager.authorizationStatus
         super.init()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        UIDevice.current.batteryState == .charging ? (locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation)
+        : (locationManager.desiredAccuracy = kCLLocationAccuracyBest)
         locationManager.startUpdatingLocation()
         locationManager.startUpdatingHeading()
     }
