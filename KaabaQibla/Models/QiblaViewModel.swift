@@ -24,27 +24,29 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     @Published var locationPermissionState: CLAuthorizationStatus
-    private let locationManager: CLLocationManager
+    private var qiblaFetcher: QiblaFetcher
     private let qiblaClient: QiblaClient
     var subscriptions = Set<AnyCancellable>()
 
-    init(locationManager: CLLocationManager = CLLocationManager(),
+    init(locationManager: QiblaFetcher = CLLocationManager(),
          qiblaClient: QiblaClient = QiblaClientImp()) {
-        self.locationManager = locationManager
+        self.qiblaFetcher = locationManager
         self.qiblaClient = qiblaClient
         locationPermissionState = locationManager.authorizationStatus
         super.init()
-        locationManager.delegate = self
-        UIDevice.current.batteryState == .charging ? (locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation)
-        : (locationManager.desiredAccuracy = kCLLocationAccuracyBest)
-        locationManager.startUpdatingLocation()
-        locationManager.startUpdatingHeading()
+        self.qiblaFetcher.delegate = self
+        UIDevice.current.batteryState == .charging ? (self.qiblaFetcher.desiredAccuracy = kCLLocationAccuracyBestForNavigation)
+        : (self.qiblaFetcher.desiredAccuracy = kCLLocationAccuracyBest)
+        subscribeToLocationManager()
     }
 
     func requestPermission() {
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        locationManager.startUpdatingHeading()
+        qiblaFetcher.requestWhenInUseAuthorization()
+    }
+
+    func subscribeToLocationManager() {
+        qiblaFetcher.requestLocation()
+        qiblaFetcher.startUpdatingHeading()
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -54,8 +56,7 @@ class QiblaViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         locationPermissionState = manager.authorizationStatus
-        locationManager.startUpdatingLocation()
-        deviceLastLocation = manager.location
+        subscribeToLocationManager()
     }
 
     func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool {
