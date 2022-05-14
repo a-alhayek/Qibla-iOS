@@ -14,7 +14,7 @@ class QiblaViewModel: NSObject, ObservableObject {
     @Published private (set) var currentQibla: KaabaHeading?
     @Published private (set) var currentUserHeading: Double?
     @Published private (set) var placemark: CLPlacemark?
-    @Published private (set) var error: Error?
+    @Published var error: Error?
     let generator = UIImpactFeedbackGenerator(style: .medium)
     var deviceLastLocation: CLLocation? {
         didSet {
