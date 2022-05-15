@@ -8,52 +8,69 @@
 import XCTest
 import Foundation
 import CoreLocation
+import Combine
 @testable import KaabaQibla
 
 class QiblaViewModelTests: XCTestCase {
+
     struct MockQiblaFetcher: QiblaFetcher {
         weak var qiblaFetcherDelegate: QiblaFetcherDelegate?
 
-        var desiredAccuracy: CLLocationAccuracy = 0
+        var desiredAccuracy: CLLocationAccuracy = 1
 
-        var authorizationStatus: CLAuthorizationStatus = .denied
-
+        var authorizationStatus: CLAuthorizationStatus = .authorizedWhenInUse
+        var handleLocation: (() -> CLLocation)?
         func requestLocation() {
-            guard let location = getCurrentLocation() else { return }
+            guard let location = handleLocation?() else { return }
             qiblaFetcherDelegate?.locationManager(self, didUpdateLocations: [location])
         }
 
         func startUpdatingHeading() {
-            qiblaFetcherDelegate?.locationManager(self, didUpdateHeading:  CLHeading.init())
+            //qiblaFetcherDelegate?.locationManager(self, didUpdateHeading:  CLHeading.init())
         }
         
         func requestWhenInUseAuthorization() {
             qiblaFetcherDelegate?.locationManagerDidChangeAuthorization(self)
         }
-
-        func getCurrentLocation() -> CLLocation? {
-            guard let coordinate = randomCoordinates.randomElement(), let lat = coordinate?.latitude,
-               let long = coordinate?.longitude else {
-                return nil
-            }
-            return CLLocation.init(latitude: lat, longitude: long)
-        }
-
-        var randomCoordinates = [
-            CLLocationCoordinate2D(latitude: 42.519539, longitude: -70.896713),
-            nil
-        ]
     }
 
-    var qiblaViewModel: QiblaViewModel!
+    var cancellable: AnyCancellable?
+    var randomCoordinates = [
+        CLLocationCoordinate2D(latitude: 42.519539, longitude: -70.896713)
+    ]
+
     override func setUpWithError() throws {
-        qiblaViewModel = .init(locationManager: MockQiblaFetcher())
+        try super.setUpWithError()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
-        qiblaViewModel = nil
+        cancellable?.cancel()
+        try super.tearDownWithError()
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    func getCurrentLocation() -> CLLocation {
+        let coordinate = randomCoordinates[0]
+        return CLLocation.init(latitude: coordinate.latitude, longitude: coordinate.longitude)
+    }
+
+    func testQiblaDirection() {
+        var qiblaFetcher = MockQiblaFetcher()
+        let requestLocationExpectation = expectation(description: "request qibla")
+        qiblaFetcher.handleLocation = {
+            requestLocationExpectation.fulfill()
+            return self.getCurrentLocation()
+        }
+        let qiblaViewModel = QiblaViewModel(locationManager: qiblaFetcher)
+        let completionExpectation = expectation(description: "completion")
+
+        cancellable = qiblaViewModel.$currentQibla.sink { kaabaHeading in
+            guard let kaabaHeading = kaabaHeading?.data.direction else { return }
+            XCTAssertEqual(kaabaHeading, 60.5391677688285)
+            completionExpectation.fulfill()
+        }
+        wait(for: [requestLocationExpectation, completionExpectation], timeout: 5)
     }
 
     func testExample() throws {

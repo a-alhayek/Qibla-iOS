@@ -68,7 +68,8 @@ class QiblaViewModel: NSObject, ObservableObject {
     }
 
     private func setNewHeadingIfHeadingIsValid(_ newHeading: CLHeading) {
-        guard newHeading.headingAccuracy > 0 else {
+        
+        guard ((try? newHeading.headingAccuracy >= 0) != nil) else {
             throwInvalidHeadingError()
             return
         }
@@ -125,15 +126,19 @@ extension QiblaViewModel: QiblaFetcherDelegate {
 
 extension QiblaViewModel: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        self.locationManager(manager, didUpdateHeading: newHeading)
+        self.locationManager(manager as QiblaFetcher, didUpdateHeading: newHeading)
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        self.locationManagerDidChangeAuthorization(manager)
+        self.locationManagerDidChangeAuthorization(manager as QiblaFetcher)
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.locationManager(manager, didUpdateLocations: locations)
+        self.locationManager(manager as QiblaFetcher, didUpdateLocations: locations)
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
 }
 
