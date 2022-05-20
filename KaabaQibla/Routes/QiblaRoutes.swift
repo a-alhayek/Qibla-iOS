@@ -12,7 +12,7 @@ enum QiblaRoutes: RestRequest {
     case qiblaDirection(coordinate: CLLocationCoordinate2D)
 
     var baseURL: URL {
-        return URL(string: "https://api.aladhan.com")!
+        API.Aladhan.url
     }
     
     var parameters: [URLQueryItem]? {
