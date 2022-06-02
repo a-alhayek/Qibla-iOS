@@ -14,6 +14,10 @@ struct HomeView: View {
                 .tabItem {
                 Image(systemName: "clock.arrow.2.circlepath")
             }
+            PrayerTimeTableView().environmentObject(PrayerViewModel())
+                .tabItem {
+                    Text("Prayer Time")
+                }
         }
     }
 }

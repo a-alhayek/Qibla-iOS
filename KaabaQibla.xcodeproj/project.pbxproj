@@ -29,6 +29,10 @@
 		0CA159C92836DF2200F6AABB /* PrayerTimeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA159C82836DF2200F6AABB /* PrayerTimeRouter.swift */; };
 		0CA159CB28372EEC00F6AABB /* AladhanDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA159CA28372EEC00F6AABB /* AladhanDateFormatter.swift */; };
 		0CA159CD2837316F00F6AABB /* PrayerTimeMehod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA159CC2837316F00F6AABB /* PrayerTimeMehod.swift */; };
+		0CA159D728480A8200F6AABB /* PrayerTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA159D628480A8200F6AABB /* PrayerTime.swift */; };
+		0CA159D9284849F000F6AABB /* PrayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA159D8284849F000F6AABB /* PrayerViewModel.swift */; };
+		0CA159DC28485C9400F6AABB /* PrayerTimeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA159DB28485C9400F6AABB /* PrayerTimeCellView.swift */; };
+		0CA159DE28485EAE00F6AABB /* PrayerTimeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA159DD28485EAE00F6AABB /* PrayerTimeTableView.swift */; };
 		0CB60E76282BCB9600552392 /* QiblaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB60E75282BCB9600552392 /* QiblaView.swift */; };
 		0CB60E79282BCBF500552392 /* QiblaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB60E78282BCBF500552392 /* QiblaViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -76,6 +80,10 @@
 		0CA159C82836DF2200F6AABB /* PrayerTimeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTimeRouter.swift; sourceTree = "<group>"; };
 		0CA159CA28372EEC00F6AABB /* AladhanDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AladhanDateFormatter.swift; sourceTree = "<group>"; };
 		0CA159CC2837316F00F6AABB /* PrayerTimeMehod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTimeMehod.swift; sourceTree = "<group>"; };
+		0CA159D628480A8200F6AABB /* PrayerTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTime.swift; sourceTree = "<group>"; };
+		0CA159D8284849F000F6AABB /* PrayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerViewModel.swift; sourceTree = "<group>"; };
+		0CA159DB28485C9400F6AABB /* PrayerTimeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTimeCellView.swift; sourceTree = "<group>"; };
+		0CA159DD28485EAE00F6AABB /* PrayerTimeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTimeTableView.swift; sourceTree = "<group>"; };
 		0CB60E75282BCB9600552392 /* QiblaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaView.swift; sourceTree = "<group>"; };
 		0CB60E78282BCBF500552392 /* QiblaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaViewModel.swift; sourceTree = "<group>"; };
 		0CB60E7A282BD3DB00552392 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -129,6 +137,7 @@
 		0C554D35282B594C00BD24D3 /* KaabaQibla */ = {
 			isa = PBXGroup;
 			children = (
+				0CA159DA28485C2700F6AABB /* PrayerTimeViews */,
 				0CA159C52835C49300F6AABB /* HomePage */,
 				0CB60E7A282BD3DB00552392 /* Info.plist */,
 				0CB60E77282BCBBA00552392 /* QiblaViews */,
@@ -172,11 +181,9 @@
 		0C554D65282B5A2C00BD24D3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0CB60E78282BCBF500552392 /* QiblaViewModel.swift */,
-				0C554D66282B5A6C00BD24D3 /* KaabaHeading.swift */,
-				0C364E91282F0AE4006975CF /* QiblaFetcher.swift */,
+				0CA159CF2842B0AB00F6AABB /* PrayerTime */,
+				0CA159CE2842B09200F6AABB /* QiblaModels */,
 				0CA159CA28372EEC00F6AABB /* AladhanDateFormatter.swift */,
-				0CA159CC2837316F00F6AABB /* PrayerTimeMehod.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -207,6 +214,35 @@
 				0CA159C32835C21200F6AABB /* HomeView.swift */,
 			);
 			path = HomePage;
+			sourceTree = "<group>";
+		};
+		0CA159CE2842B09200F6AABB /* QiblaModels */ = {
+			isa = PBXGroup;
+			children = (
+				0C364E91282F0AE4006975CF /* QiblaFetcher.swift */,
+				0C554D66282B5A6C00BD24D3 /* KaabaHeading.swift */,
+				0CB60E78282BCBF500552392 /* QiblaViewModel.swift */,
+			);
+			path = QiblaModels;
+			sourceTree = "<group>";
+		};
+		0CA159CF2842B0AB00F6AABB /* PrayerTime */ = {
+			isa = PBXGroup;
+			children = (
+				0CA159CC2837316F00F6AABB /* PrayerTimeMehod.swift */,
+				0CA159D628480A8200F6AABB /* PrayerTime.swift */,
+				0CA159D8284849F000F6AABB /* PrayerViewModel.swift */,
+			);
+			path = PrayerTime;
+			sourceTree = "<group>";
+		};
+		0CA159DA28485C2700F6AABB /* PrayerTimeViews */ = {
+			isa = PBXGroup;
+			children = (
+				0CA159DB28485C9400F6AABB /* PrayerTimeCellView.swift */,
+				0CA159DD28485EAE00F6AABB /* PrayerTimeTableView.swift */,
+			);
+			path = PrayerTimeViews;
 			sourceTree = "<group>";
 		};
 		0CB60E77282BCBBA00552392 /* QiblaViews */ = {
@@ -353,6 +389,8 @@
 				0C554D43282B594F00BD24D3 /* KaabaQibla.xcdatamodeld in Sources */,
 				0CA159CB28372EEC00F6AABB /* AladhanDateFormatter.swift in Sources */,
 				0CA159C42835C21200F6AABB /* HomeView.swift in Sources */,
+				0CA159DC28485C9400F6AABB /* PrayerTimeCellView.swift in Sources */,
+				0CA159D9284849F000F6AABB /* PrayerViewModel.swift in Sources */,
 				0CB60E79282BCBF500552392 /* QiblaViewModel.swift in Sources */,
 				0C554D6C282B5C8300BD24D3 /* RestPerformer.swift in Sources */,
 				0CA159C92836DF2200F6AABB /* PrayerTimeRouter.swift in Sources */,
@@ -361,10 +399,12 @@
 				0C554D6E282B5D5700BD24D3 /* RestRequest.swift in Sources */,
 				0CB60E76282BCB9600552392 /* QiblaView.swift in Sources */,
 				0C364E8A282D12B1006975CF /* CompassImage.swift in Sources */,
+				0CA159DE28485EAE00F6AABB /* PrayerTimeTableView.swift in Sources */,
 				0C364E8C282D13A0006975CF /* KabbaImage.swift in Sources */,
 				0C554D6A282B5C4C00BD24D3 /* RestClient.swift in Sources */,
 				0CA159CD2837316F00F6AABB /* PrayerTimeMehod.swift in Sources */,
 				0C554D71282B5E8100BD24D3 /* QiblaRoutes.swift in Sources */,
+				0CA159D728480A8200F6AABB /* PrayerTime.swift in Sources */,
 				0C364E8E282D14A7006975CF /* QiblaHomeScreen.swift in Sources */,
 				0C364E92282F0AE4006975CF /* QiblaFetcher.swift in Sources */,
 				0C554D37282B594C00BD24D3 /* KaabaQiblaApp.swift in Sources */,
