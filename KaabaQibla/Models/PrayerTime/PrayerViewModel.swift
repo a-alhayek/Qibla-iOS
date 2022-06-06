@@ -16,15 +16,13 @@ class PrayerViewModel: NSObject, ObservableObject {
     @Published  var timeMethod:  Int
     {
         didSet {
-            
+            setPrayerTime(coordnaite: coordination)
         }
     }
     private var coordination: CLLocationCoordinate2D?
     {
         didSet {
-            if let coordination = coordination {
-                setPrayerTime(coordnaite: coordination)
-            }
+            setPrayerTime(coordnaite: coordination)
         }
     }
     var subscriptions = Set<AnyCancellable>()
@@ -40,12 +38,15 @@ class PrayerViewModel: NSObject, ObservableObject {
         
     }
 
-    func newMethodSelected(_ rawValue: Int) {
-        let prayerMethod = PrayerTimeMehod.init(rawValue: rawValue)!
-    }
 
-    func setPrayerTime(coordnaite: CLLocationCoordinate2D) {
-        prayerClient.getPrayerTime(latitude: coordnaite.latitude, longtitude: coordnaite.longitude).sink(receiveCompletion: { error in
+    func setPrayerTime(coordnaite: CLLocationCoordinate2D?) {
+        guard let coordnaite = coordnaite else {
+            return
+        }
+        prayerClient.getPrayerTime(latitude: coordnaite.latitude, longtitude: coordnaite.longitude,
+                                   method: PrayerTimeMehod(rawValue: timeMethod)!)
+            .receive(on: DispatchQueue.main, options: .none)
+            .sink(receiveCompletion: { error in
             print(error)
         }, receiveValue: { [weak self] prayer in
             self?.prayerTime = prayer.data

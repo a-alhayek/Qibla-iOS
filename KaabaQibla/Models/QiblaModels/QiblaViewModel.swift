@@ -86,7 +86,9 @@ class QiblaViewModel: NSObject, ObservableObject {
         subscriptions.forEach {
             $0.cancel()
         }
-        qiblaClient.getQibla(for: coordinate).receive(on: DispatchQueue.main).sink(receiveCompletion: { [weak self] completion in
+        qiblaClient.getQibla(for: coordinate).receive(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.main, options: .none)
+            .sink(receiveCompletion: { [weak self] completion in
             switch completion {
             case .finished:
                 ()
