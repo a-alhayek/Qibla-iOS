@@ -7,7 +7,11 @@
 
 import Foundation
 
-enum PrayerTimeMehod: Int {
+enum PrayerTimeMehod: Int, Identifiable, CaseIterable {
+    var id: Int {
+         self.rawValue
+    }
+    
     case SIA = 0
     case UISK
     case ISNA

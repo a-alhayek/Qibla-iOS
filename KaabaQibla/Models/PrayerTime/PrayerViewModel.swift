@@ -13,6 +13,12 @@ class PrayerViewModel: NSObject, ObservableObject {
     @Published private (set) var prayerTime: AladahnPrayerTimeAndDate?
     private let prayerClient: PrayerTimeClient
     private var locationManager: QiblaFetcher
+    @Published  var timeMethod:  Int
+    {
+        didSet {
+            
+        }
+    }
     private var coordination: CLLocationCoordinate2D?
     {
         didSet {
@@ -26,11 +32,16 @@ class PrayerViewModel: NSObject, ObservableObject {
           locationManger: QiblaFetcher = CLLocationManager()) {
         self.prayerClient = prayerClient
         self.locationManager = locationManger
+        self.timeMethod = PrayerTimeMehod.ISNA.rawValue
         super.init()
         self.locationManager.qiblaFetcherDelegate = self
         
         locationManger.requestWhenInUseAuthorization()
         
+    }
+
+    func newMethodSelected(_ rawValue: Int) {
+        let prayerMethod = PrayerTimeMehod.init(rawValue: rawValue)!
     }
 
     func setPrayerTime(coordnaite: CLLocationCoordinate2D) {

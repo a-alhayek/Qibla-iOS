@@ -16,8 +16,16 @@ struct PrayerTimeTableView: View {
     var body: some View {
         VStack {
             List(salat) { salatNameAndTime in
-                PrayerTimeCellView()
+                PrayerTimeCellView(salatAndTime: salatNameAndTime)
             }
+            Picker("Time methods:", selection: $prayerViewModel.timeMethod) {
+                ForEach(PrayerTimeMehod.allCases) { element in
+                    Text(element.textRepresentation).tag(element.id)
+                }
+                
+            }.padding(.horizontal)
+            
+            Spacer()
         }
         
     }

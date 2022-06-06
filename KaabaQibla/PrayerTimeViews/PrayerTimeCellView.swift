@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct PrayerTimeCellView: View {
+    let salatAndTime: SalatNameAndTime
     var body: some View {
         HStack {
-            Text("Fajr")
+            Text(salatAndTime.salatName)
                 .font(.title3)
                 .padding(.leading)
             Spacer()
-            Text("03:57")
+            Text(salatAndTime.salatTime12)
                 .font(.title3)
                 .padding(.trailing)
         }
@@ -23,6 +24,6 @@ struct PrayerTimeCellView: View {
 
 struct PrayerTimeCellView_Previews: PreviewProvider {
     static var previews: some View {
-        PrayerTimeCellView()
+        PrayerTimeCellView(salatAndTime: SalatNameAndTime(salatName:"Fajar", salatTime: "03:34"))
     }
 }
