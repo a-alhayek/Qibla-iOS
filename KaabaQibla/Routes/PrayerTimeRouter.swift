@@ -9,6 +9,8 @@ import Foundation
 
 enum PrayerTimeRouter: RestRequest {
     case prayerTimes(lat: Double, long: Double, method: PrayerTimeMehod)
+    case prayerTimesByMonth(lat: Double, long: Double,
+                            method: PrayerTimeMehod, month: String, year: String)
     
     var baseURL: URL {
         API.Aladhan.url
@@ -20,12 +22,19 @@ enum PrayerTimeRouter: RestRequest {
             return [URLQueryItem(name: "latitude", value: String(lat)),
                     URLQueryItem.init(name: "longitude", value: String(long)),
                     URLQueryItem.init(name: "method", value: String(method.rawValue))]
+        case .prayerTimesByMonth(let lat, let long, let method, let month, let year):
+            return [URLQueryItem(name: "latitude", value: String(lat)),
+                    URLQueryItem.init(name: "longitude", value: String(long)),
+                    URLQueryItem.init(name: "method", value: String(method.rawValue)),
+                    URLQueryItem.init(name: "month", value: month),
+                    URLQueryItem(name: "year", value: year)]
         }
     }
 
     var httpMethod: HttpMethod {
         switch self {
-        case .prayerTimes:
+        case .prayerTimes,
+             .prayerTimesByMonth:
             return .get
         }
     }
@@ -36,6 +45,8 @@ enum PrayerTimeRouter: RestRequest {
             let aladhanDateFormmater = AladhanDateFormatter()
             let aladhanDate = aladhanDateFormmater.getAladhanString(from: Date())
             return "/v1/timings/\(aladhanDate)"
+        case .prayerTimesByMonth:
+            return "/v1/calendar"
         }
     }
     
