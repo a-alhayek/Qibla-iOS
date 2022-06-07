@@ -13,6 +13,7 @@ class PrayerViewModel: NSObject, ObservableObject {
     @Published private (set) var prayerTime: AladahnPrayerTimeAndDate?
     private let prayerClient: PrayerTimeClient
     private var locationManager: QiblaFetcher
+    private var repository: RealmDatabaseRepository<AladahnPrayerTimeAndDate, String>
     @Published  var timeMethod:  Int
     {
         didSet {
@@ -31,6 +32,9 @@ class PrayerViewModel: NSObject, ObservableObject {
         self.prayerClient = prayerClient
         self.locationManager = locationManger
         self.timeMethod = PrayerTimeMehod.ISNA.rawValue
+        let migration = AladahnMigration()
+        let configration = AladahnRealmConfig.prayerTime.configuration(migration)
+        repository = RealmDatabaseRepository(configuration: configration, dispatchQueueLabel: "aladahn.queue")
         super.init()
         self.locationManager.qiblaFetcherDelegate = self
         

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C05B636284E295A0060B7A6 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0C05B635284E295A0060B7A6 /* Realm */; };
+		0C05B638284E295A0060B7A6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0C05B637284E295A0060B7A6 /* RealmSwift */; };
+		0C05B63B284E82710060B7A6 /* RealmDatabaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C05B63A284E82710060B7A6 /* RealmDatabaseRepository.swift */; };
+		0C05B63D284EBFDE0060B7A6 /* AladahnRealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C05B63C284EBFDE0060B7A6 /* AladahnRealmConfig.swift */; };
 		0C364E8A282D12B1006975CF /* CompassImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C364E89282D12B0006975CF /* CompassImage.swift */; };
 		0C364E8C282D13A0006975CF /* KabbaImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C364E8B282D13A0006975CF /* KabbaImage.swift */; };
 		0C364E8E282D14A7006975CF /* QiblaHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C364E8D282D14A7006975CF /* QiblaHomeScreen.swift */; };
@@ -55,6 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C05B63A284E82710060B7A6 /* RealmDatabaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabaseRepository.swift; sourceTree = "<group>"; };
+		0C05B63C284EBFDE0060B7A6 /* AladahnRealmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AladahnRealmConfig.swift; sourceTree = "<group>"; };
 		0C364E89282D12B0006975CF /* CompassImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassImage.swift; sourceTree = "<group>"; };
 		0C364E8B282D13A0006975CF /* KabbaImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KabbaImage.swift; sourceTree = "<group>"; };
 		0C364E8D282D14A7006975CF /* QiblaHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaHomeScreen.swift; sourceTree = "<group>"; };
@@ -94,6 +100,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C05B638284E295A0060B7A6 /* RealmSwift in Frameworks */,
+				0C05B636284E295A0060B7A6 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +122,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C05B639284E82370060B7A6 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				0C05B63A284E82710060B7A6 /* RealmDatabaseRepository.swift */,
+				0C05B63C284EBFDE0060B7A6 /* AladahnRealmConfig.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		0C554D2A282B594C00BD24D3 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +154,7 @@
 		0C554D35282B594C00BD24D3 /* KaabaQibla */ = {
 			isa = PBXGroup;
 			children = (
+				0C05B639284E82370060B7A6 /* Realm */,
 				0CA159DA28485C2700F6AABB /* PrayerTimeViews */,
 				0CA159C52835C49300F6AABB /* HomePage */,
 				0CB60E7A282BD3DB00552392 /* Info.plist */,
@@ -272,6 +290,10 @@
 			dependencies = (
 			);
 			name = KaabaQibla;
+			packageProductDependencies = (
+				0C05B635284E295A0060B7A6 /* Realm */,
+				0C05B637284E295A0060B7A6 /* RealmSwift */,
+			);
 			productName = KaabaQibla;
 			productReference = 0C554D33282B594C00BD24D3 /* KaabaQibla.app */;
 			productType = "com.apple.product-type.application";
@@ -344,6 +366,9 @@
 				Base,
 			);
 			mainGroup = 0C554D2A282B594C00BD24D3;
+			packageReferences = (
+				0C05B634284E295A0060B7A6 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 0C554D34282B594C00BD24D3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -389,6 +414,7 @@
 				0C554D43282B594F00BD24D3 /* KaabaQibla.xcdatamodeld in Sources */,
 				0CA159CB28372EEC00F6AABB /* AladhanDateFormatter.swift in Sources */,
 				0CA159C42835C21200F6AABB /* HomeView.swift in Sources */,
+				0C05B63D284EBFDE0060B7A6 /* AladahnRealmConfig.swift in Sources */,
 				0CA159DC28485C9400F6AABB /* PrayerTimeCellView.swift in Sources */,
 				0CA159D9284849F000F6AABB /* PrayerViewModel.swift in Sources */,
 				0CB60E79282BCBF500552392 /* QiblaViewModel.swift in Sources */,
@@ -404,6 +430,7 @@
 				0C554D6A282B5C4C00BD24D3 /* RestClient.swift in Sources */,
 				0CA159CD2837316F00F6AABB /* PrayerTimeMehod.swift in Sources */,
 				0C554D71282B5E8100BD24D3 /* QiblaRoutes.swift in Sources */,
+				0C05B63B284E82710060B7A6 /* RealmDatabaseRepository.swift in Sources */,
 				0CA159D728480A8200F6AABB /* PrayerTime.swift in Sources */,
 				0C364E8E282D14A7006975CF /* QiblaHomeScreen.swift in Sources */,
 				0C364E92282F0AE4006975CF /* QiblaFetcher.swift in Sources */,
@@ -743,6 +770,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0C05B634284E295A0060B7A6 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.19.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0C05B635284E295A0060B7A6 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0C05B634284E295A0060B7A6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		0C05B637284E295A0060B7A6 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0C05B634284E295A0060B7A6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		0C554D41282B594F00BD24D3 /* KaabaQibla.xcdatamodeld */ = {

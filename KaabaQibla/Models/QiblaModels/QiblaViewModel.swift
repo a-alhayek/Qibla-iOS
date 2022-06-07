@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import UIKit
 import CoreLocation
+import RealmSwift
 
 class QiblaViewModel: NSObject, ObservableObject {
     @Published private (set) var currentQibla: KaabaHeading?

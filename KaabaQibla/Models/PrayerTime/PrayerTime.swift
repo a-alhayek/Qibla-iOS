@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 struct SalatNameAndTime: Identifiable {
     var id = UUID()
     private let dateFormatter = AladhanDateFormatter()
@@ -20,48 +21,48 @@ class AladahnTimeResponse: Decodable {
     let data: AladahnPrayerTimeAndDate
 }
 
-class AladahnPrayerTimeAndDate: Decodable {
-    let timings: PrayerTime
-    let date: PrayerDate
+class AladahnPrayerTimeAndDate: Object, Decodable {
+    @Persisted var timings: PrayerTime?
+    @Persisted var date: PrayerDate?
     
     var prayerTimings: PrayerTime {
-        timings
+        timings!
     }
 
     var prayerDate: PrayerDate {
-        return date
+        return date!
     }
     var prayers: [SalatNameAndTime] {
-        [SalatNameAndTime(salatName: PrayerTime.PrayersName.Fajr.rawValue, salatTime: timings.fajr),
-         SalatNameAndTime(salatName: PrayerTime.PrayersName.sunrise.rawValue, salatTime: timings.sunrise),
-         SalatNameAndTime(salatName: PrayerTime.PrayersName.dhuhr.rawValue, salatTime: timings.dhuhr),
-         SalatNameAndTime(salatName: PrayerTime.PrayersName.asr.rawValue, salatTime: timings.asr),
-         SalatNameAndTime(salatName: PrayerTime.PrayersName.maghrib.rawValue, salatTime: timings.maghrib),
-         SalatNameAndTime(salatName: PrayerTime.PrayersName.isha.rawValue, salatTime: timings.isha),
-         SalatNameAndTime(salatName: PrayerTime.PrayersName.imsak.rawValue, salatTime: timings.imsak)
+        [SalatNameAndTime(salatName: PrayersName.Fajr.rawValue, salatTime: timings!.fajr),
+         SalatNameAndTime(salatName: PrayersName.sunrise.rawValue, salatTime: timings!.sunrise),
+         SalatNameAndTime(salatName: PrayersName.dhuhr.rawValue, salatTime: timings!.dhuhr),
+         SalatNameAndTime(salatName: PrayersName.asr.rawValue, salatTime: timings!.asr),
+         SalatNameAndTime(salatName: PrayersName.maghrib.rawValue, salatTime: timings!.maghrib),
+         SalatNameAndTime(salatName: PrayersName.isha.rawValue, salatTime: timings!.isha),
+         SalatNameAndTime(salatName: PrayersName.imsak.rawValue, salatTime: timings!.imsak)
         ]
     }
 }
 
+enum PrayersName: String {
+    case Fajr
+    case sunrise = "Sunrise"
+    case dhuhr = "Dhuhr"
+    case asr = "Asr"
+    case maghrib = "Maghrib"
+    case isha = "Isha"
+    case imsak = "Imsak"
+}
 
-class PrayerTime: Decodable {
-    let fajr: String
-    let sunrise: String
-    let dhuhr: String
-    let asr: String
-    let maghrib: String
-    let isha: String
-    let imsak: String
 
-    enum PrayersName: String {
-        case Fajr
-        case sunrise = "Sunrise"
-        case dhuhr = "Dhuhr"
-        case asr = "Asr"
-        case maghrib = "Maghrib"
-        case isha = "Isha"
-        case imsak = "Imsak"
-    }
+class PrayerTime: Object, Decodable {
+    @Persisted var fajr: String
+    @Persisted var sunrise: String
+    @Persisted var dhuhr: String
+    @Persisted var asr: String
+    @Persisted var maghrib: String
+    @Persisted var isha: String
+    @Persisted var imsak: String
 
     enum CodingKeys: String, CodingKey {
         case fajr = "Fajr"
@@ -74,23 +75,19 @@ class PrayerTime: Decodable {
     }
 }
 
-class PrayerDate: Decodable {
-    let readable: String
-    let timestamp: String
+class PrayerDate: Object, Decodable {
+    @Persisted var readable: String
+    @Persisted var timestamp: String
+    @Persisted var hijri: AladahnDate?
+    @Persisted var gregorian: AladahnDate?
     
 }
 
-class AladahnDate: Decodable {
-    let hijri: PrayerDate
-    let gregorian: PrayerDate
-    
-    class PrayerDate: Decodable {
-        let date: String
-        let format: String
-        let day: String
-        let weekday: [String: String]
-        let month: [String: String]
-        let year: String
-        let holidays: [String]?
-    }
+class AladahnDate: Object, Decodable {
+    @Persisted var date: String
+    @Persisted var format: String
+    @Persisted var day: String
+
+    @Persisted var year: String
+    //let holidays: [String]?
 }
