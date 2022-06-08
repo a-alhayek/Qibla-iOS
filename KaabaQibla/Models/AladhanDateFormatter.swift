@@ -21,4 +21,12 @@ class AladhanDateFormatter: DateFormatter {
         }
         return nil
     }
+
+    func getYear(from date: Date) -> String {
+        String(getAladhanString(from: date).split(separator: "-")[2])
+    }
+
+    func getMonth(from date: Date) -> String {
+        String(getAladhanString(from: date).split(separator: "-")[1])
+    }
 }

@@ -21,6 +21,10 @@ class AladahnTimeResponse: Decodable {
     let data: AladahnPrayerTimeAndDate
 }
 
+class AladahnCalenderResponse: Decodable {
+    let data: [AladahnPrayerTimeAndDate]
+}
+
 class AladahnPrayerTimeAndDate: Object, Decodable {
     @Persisted var timings: PrayerTime?
     @Persisted var date: PrayerDate?

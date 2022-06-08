@@ -46,7 +46,17 @@ final class RestClient {
               }
               return .unknown(error)
           }.eraseToAnyPublisher()
-  }
+    }
+
+    public func preform<T: Decodable>(req: RestRequest) -> AnyPublisher<[T], NetworkError> {
+        return restPerformer.response(req: req.urlRequest).map(\.data)
+            .decode(type: [T].self, decoder: JSONDecoder()).mapError { error in
+                if let decodingError = error as? DecodingError {
+                    return NetworkError.decoding(decodingError: decodingError)
+                }
+                return .unknown(error)
+            }.eraseToAnyPublisher()
+    }
 }
 
 protocol QiblaClient {
@@ -79,5 +89,14 @@ final class PrayerTimeClientImp: PrayerTimeClient {
 
     func getPrayerTime(latitude: Double, longtitude: Double, method: PrayerTimeMehod) -> AnyPublisher<AladahnTimeResponse, NetworkError> {
         restClient.preform(req: PrayerTimeRouter.prayerTimes(lat: latitude, long: longtitude, method: method))
+    }
+
+    func getPrayerTimeByMonth(latitude: Double, longtitude: Double, method: PrayerTimeMehod) -> AnyPublisher<AladahnCalenderResponse, NetworkError> {
+        let date = Date()
+        let dateFormmater = AladhanDateFormatter()
+        let year = dateFormmater.getYear(from: date)
+        let month = dateFormmater.getMonth(from: date)
+        return restClient.preform(req: PrayerTimeRouter.prayerTimesByMonth(lat: latitude, long: longtitude, method: method,
+                                                                    month: month, year: year))
     }
 }

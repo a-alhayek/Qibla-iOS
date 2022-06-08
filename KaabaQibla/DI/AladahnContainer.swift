@@ -22,7 +22,7 @@ let diContainer = Container { container in
         return PrayerTimeClientImp(restClient: resolver.resolve(RestClient.self)!)
     }
 
-    container.register(PrayerTimeDB.self, name: "prayer") { resolver in
+    container.register(PrayerTimeDB.self) { resolver in
         let config = AladahnRealmConfig.prayerTime.configuration(AladahnMigration())
         return PrayerTimeDB(configuration: config, dispatchQueueLabel: "Realm.prayer.repository")
     }
