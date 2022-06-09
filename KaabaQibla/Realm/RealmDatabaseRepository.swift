@@ -27,18 +27,21 @@ protocol Repository {
 
 class RealmDatabaseRepository<S: Object, U: Hashable>: Repository {
     private let configuration: Realm.Configuration
-    private let queue: DispatchQueue
+    let queue: DispatchQueue
     init(configuration: Realm.Configuration, dispatchQueueLabel: String) {
         self.configuration = configuration
         queue = .init(label: dispatchQueueLabel)
     }
     private func makeRealm() throws -> Realm {
-        try Realm.init(configuration: configuration, queue: queue)
+        try Realm.init(configuration: configuration)
     }
 
     func getAll(objectsWith predicate: NSPredicate?) -> AnyPublisher<[S], Never> {
         guard let realm = try? makeRealm() else { return Empty().eraseToAnyPublisher() }
-        let result = realm.objects(S.self)
+        var result = realm.objects(S.self)
+        if let isSelected = predicate {
+            result = result.filter(isSelected)
+        }
         return Just(Array(result)).eraseToAnyPublisher()
     }
     

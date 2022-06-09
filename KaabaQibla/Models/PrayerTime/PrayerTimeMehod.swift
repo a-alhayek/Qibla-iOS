@@ -6,6 +6,22 @@
 //
 
 import Foundation
+import RealmSwift
+
+class PrayerMethod: Object {
+    @Persisted(primaryKey: true) var rawValue: Int
+    @Persisted var isSelected: Bool
+
+    init(rawValue: Int) {
+        super.init()
+        self.rawValue = rawValue
+        isSelected = false
+    }
+
+    override init() {
+        super.init()
+    }
+}
 
 enum PrayerTimeMehod: Int, Identifiable, CaseIterable {
     var id: Int {

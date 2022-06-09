@@ -10,13 +10,14 @@ import Combine
 import CoreLocation
 
 class PrayerViewModel: NSObject, ObservableObject {
-    @Published private (set) var prayerTime: AladahnPrayerTimeAndDate?
+    @Published private (set) var prayerTime: [SalatNameAndTime] = []
     private let prayerClient: PrayerTimeClient
     private var locationManager: QiblaFetcher
-    private var repository: RealmDatabaseRepository<AladahnPrayerTimeAndDate, String>
+    private let prayerTimeManager: PrayerTimeManager
     @Published  var timeMethod:  Int
     {
         didSet {
+            prayerTimeManager.selectMethod(PrayerTimeMehod(rawValue: timeMethod)!)
             setPrayerTime(coordnaite: coordination)
         }
     }
@@ -28,18 +29,29 @@ class PrayerViewModel: NSObject, ObservableObject {
     }
     var subscriptions = Set<AnyCancellable>()
     init (prayerClient: PrayerTimeClient = PrayerTimeClientImp(),
-          locationManger: QiblaFetcher = CLLocationManager()) {
+          locationManger: QiblaFetcher = CLLocationManager(), prayerTimeManager: PrayerTimeManager = diContainer.resolve(PrayerTimeManager.self)!) {
         self.prayerClient = prayerClient
         self.locationManager = locationManger
         self.timeMethod = PrayerTimeMehod.ISNA.rawValue
-        let migration = AladahnMigration()
-        let configration = AladahnRealmConfig.prayerTime.configuration(migration)
-        repository = RealmDatabaseRepository(configuration: configration, dispatchQueueLabel: "aladahn.queue")
+        self.prayerTimeManager = prayerTimeManager
         super.init()
         self.locationManager.qiblaFetcherDelegate = self
         
         locationManger.requestWhenInUseAuthorization()
-        
+        listenToUpdates()
+    }
+
+    private func listenToUpdates() {
+        prayerTimeManager.currentMehodBS.sink(receiveValue: {[weak self] method in
+            self?.timeMethod = method.rawValue
+        }).store(in: &subscriptions)
+
+        prayerTimeManager.prayerTimings.receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { error in
+            print(error)
+        }, receiveValue: { [weak self] prayer in
+            self?.prayerTime = prayer
+        }).store(in: &subscriptions)
     }
 
 
@@ -47,14 +59,7 @@ class PrayerViewModel: NSObject, ObservableObject {
         guard let coordnaite = coordnaite else {
             return
         }
-        prayerClient.getPrayerTime(latitude: coordnaite.latitude, longtitude: coordnaite.longitude,
-                                   method: PrayerTimeMehod(rawValue: timeMethod)!)
-            .receive(on: DispatchQueue.main, options: .none)
-            .sink(receiveCompletion: { error in
-            print(error)
-        }, receiveValue: { [weak self] prayer in
-            self?.prayerTime = prayer.data
-        }).store(in: &subscriptions)
+        prayerTimeManager.getPrayerTime(coordinate: coordnaite, method: PrayerTimeMehod(rawValue: timeMethod)!)
     }
 }
 extension PrayerViewModel: CLLocationManagerDelegate {

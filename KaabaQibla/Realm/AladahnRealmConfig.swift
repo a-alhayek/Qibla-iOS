@@ -45,8 +45,9 @@ class AladahnMigration: RealmMigration {
     let objectTypes: [Object.Type]? = [AladahnDate.self,
                                        PrayerDate.self,
                                        PrayerTime.self,
-                                       AladahnPrayerTimeAndDate.self
-    ]
+                                       AladahnPrayerTimeAndDate.self,
+                                       PrayerMethod.self
+                                       ]
     
     var migrationBlock: MigrationBlock?
     

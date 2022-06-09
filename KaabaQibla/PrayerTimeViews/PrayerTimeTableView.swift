@@ -11,7 +11,7 @@ import Combine
 struct PrayerTimeTableView: View {
     @EnvironmentObject var prayerViewModel: PrayerViewModel
     var salat: [SalatNameAndTime] {
-        prayerViewModel.prayerTime?.prayers ?? []
+        prayerViewModel.prayerTime
     }
     var body: some View {
         VStack {
