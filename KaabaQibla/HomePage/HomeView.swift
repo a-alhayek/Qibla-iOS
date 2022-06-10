@@ -12,11 +12,17 @@ struct HomeView: View {
         TabView {
             QiblaView().environmentObject(QiblaViewModel())
                 .tabItem {
-                Image(systemName: "clock.arrow.2.circlepath")
+                    VStack {
+                        Image(systemName: "timelapse")
+                        Text("Qibla")
+                    }
             }
             PrayerTimeTableView().environmentObject(PrayerViewModel())
                 .tabItem {
-                    Text("Prayer Time")
+                    VStack {
+                        Image(systemName: "person.circle")
+                        Text("Prayer Time")
+                    }
                 }
         }
     }

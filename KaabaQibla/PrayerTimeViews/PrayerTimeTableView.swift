@@ -26,7 +26,6 @@ struct PrayerTimeTableView: View {
             }.padding(.horizontal)
             Spacer()
         }
-        
     }
 }
 
