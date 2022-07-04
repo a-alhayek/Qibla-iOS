@@ -26,9 +26,15 @@ class AladahnCalenderResponse: Decodable {
 }
 
 class AladahnPrayerTimeAndDate: Object, Decodable {
+    
     @Persisted var timings: PrayerTime?
     @Persisted var date: PrayerDate?
-    
+    @Persisted var method: Int?
+
+    var exactDate: String? {
+        date?.gregorian?.date
+    }
+
     var prayerTimings: PrayerTime {
         timings!
     }
@@ -36,6 +42,7 @@ class AladahnPrayerTimeAndDate: Object, Decodable {
     var prayerDate: PrayerDate {
         return date!
     }
+
     var prayers: [SalatNameAndTime] {
         [SalatNameAndTime(salatName: PrayersName.Fajr.rawValue, salatTime: timings!.fajr),
          SalatNameAndTime(salatName: PrayersName.sunrise.rawValue, salatTime: timings!.sunrise),

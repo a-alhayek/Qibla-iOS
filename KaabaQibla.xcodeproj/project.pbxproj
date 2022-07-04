@@ -40,6 +40,8 @@
 		0CA159D9284849F000F6AABB /* PrayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA159D8284849F000F6AABB /* PrayerViewModel.swift */; };
 		0CA159DC28485C9400F6AABB /* PrayerTimeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA159DB28485C9400F6AABB /* PrayerTimeCellView.swift */; };
 		0CA159DE28485EAE00F6AABB /* PrayerTimeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA159DD28485EAE00F6AABB /* PrayerTimeTableView.swift */; };
+		0CB0BB9E28661C650051B26C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0CB0BB9D28661C650051B26C /* Realm */; };
+		0CB0BBA028661C650051B26C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0CB0BB9F28661C650051B26C /* RealmSwift */; };
 		0CB60E76282BCB9600552392 /* QiblaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB60E75282BCB9600552392 /* QiblaView.swift */; };
 		0CB60E79282BCBF500552392 /* QiblaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB60E78282BCBF500552392 /* QiblaViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -107,6 +109,8 @@
 			files = (
 				0C05B638284E295A0060B7A6 /* RealmSwift in Frameworks */,
 				0C05B636284E295A0060B7A6 /* Realm in Frameworks */,
+				0CB0BB9E28661C650051B26C /* Realm in Frameworks */,
+				0CB0BBA028661C650051B26C /* RealmSwift in Frameworks */,
 				0C05B643284EDB800060B7A6 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +322,8 @@
 				0C05B635284E295A0060B7A6 /* Realm */,
 				0C05B637284E295A0060B7A6 /* RealmSwift */,
 				0C05B642284EDB800060B7A6 /* Swinject */,
+				0CB0BB9D28661C650051B26C /* Realm */,
+				0CB0BB9F28661C650051B26C /* RealmSwift */,
 			);
 			productName = KaabaQibla;
 			productReference = 0C554D33282B594C00BD24D3 /* KaabaQibla.app */;
@@ -394,6 +400,7 @@
 			packageReferences = (
 				0C05B634284E295A0060B7A6 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				0C05B641284EDB7F0060B7A6 /* XCRemoteSwiftPackageReference "Swinject" */,
+				0CB0BB9C28661C650051B26C /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 0C554D34282B594C00BD24D3 /* Products */;
 			projectDirPath = "";
@@ -816,6 +823,14 @@
 				minimumVersion = 2.8.0;
 			};
 		};
+		0CB0BB9C28661C650051B26C /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.28.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -833,6 +848,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0C05B641284EDB7F0060B7A6 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		0CB0BB9D28661C650051B26C /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0CB0BB9C28661C650051B26C /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		0CB0BB9F28661C650051B26C /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0CB0BB9C28661C650051B26C /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 

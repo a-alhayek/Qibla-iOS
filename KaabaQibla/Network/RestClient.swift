@@ -77,7 +77,7 @@ final class QiblaClientImp: QiblaClient {
 }
 
 protocol PrayerTimeClient {
-    func getPrayerTime(latitude: Double, longtitude: Double, method: PrayerTimeMehod) -> AnyPublisher<AladahnTimeResponse, NetworkError>
+    func getPrayerTime(latitude: Double, longtitude: Double, method: PrayerTimeMehod, date: String) -> AnyPublisher<AladahnTimeResponse, NetworkError>
 }
 
 final class PrayerTimeClientImp: PrayerTimeClient {
@@ -87,8 +87,8 @@ final class PrayerTimeClientImp: PrayerTimeClient {
         self.restClient = restClient
     }
 
-    func getPrayerTime(latitude: Double, longtitude: Double, method: PrayerTimeMehod) -> AnyPublisher<AladahnTimeResponse, NetworkError> {
-        restClient.preform(req: PrayerTimeRouter.prayerTimes(lat: latitude, long: longtitude, method: method))
+    func getPrayerTime(latitude: Double, longtitude: Double, method: PrayerTimeMehod, date: String) -> AnyPublisher<AladahnTimeResponse, NetworkError> {
+        restClient.preform(req: PrayerTimeRouter.prayerTimes(lat: latitude, long: longtitude, method: method, date: date))
     }
 
     func getPrayerTimeByMonth(latitude: Double, longtitude: Double, method: PrayerTimeMehod) -> AnyPublisher<AladahnCalenderResponse, NetworkError> {

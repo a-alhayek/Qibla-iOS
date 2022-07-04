@@ -13,6 +13,11 @@ class AladhanDateFormatter: DateFormatter {
         return string(from: date)
     }
 
+    func getAladhanDate(from string: String) -> Date? {
+        dateFormat = "dd-MM-yyyy"
+        return date(from: string)
+    }
+
     func convertTimeToTweleveHour(_ text: String) -> String? {
         dateFormat = "HH:mm"
         if let date = self.date(from: text) {

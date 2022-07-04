@@ -8,58 +8,147 @@
 import Foundation
 import Combine
 import CoreLocation
+import RealmSwift
 
 class PrayerViewModel: NSObject, ObservableObject {
+    private let dateFormmater = AladhanDateFormatter()
     @Published private (set) var prayerTime: [SalatNameAndTime] = []
     private let prayerClient: PrayerTimeClient
     private var locationManager: QiblaFetcher
     private let prayerTimeManager: PrayerTimeManager
-    @Published  var timeMethod:  Int
+    private var realmInit = false
+    private var prayerTimeRealm: Results<AladahnPrayerTimeAndDate>?
+    private (set) var date: String
+    @Published  var timeMethod: Int = 0
     {
         didSet {
+            guard realmInit else { return }
             prayerTimeManager.selectMethod(PrayerTimeMehod(rawValue: timeMethod)!)
-            setPrayerTime(coordnaite: coordination)
+            setPrayerTime(coordnaite: coordination, date: date)
         }
     }
+
     private var coordination: CLLocationCoordinate2D?
     {
         didSet {
-            setPrayerTime(coordnaite: coordination)
+            setPrayerTime(coordnaite: coordination, date: date)
         }
     }
+
+    var notificationToken: NotificationToken?
+    var dateNotificationToken: NotificationToken?
+
     var subscriptions = Set<AnyCancellable>()
     init (prayerClient: PrayerTimeClient = PrayerTimeClientImp(),
           locationManger: QiblaFetcher = CLLocationManager(), prayerTimeManager: PrayerTimeManager = diContainer.resolve(PrayerTimeManager.self)!) {
         self.prayerClient = prayerClient
         self.locationManager = locationManger
-        self.timeMethod = PrayerTimeMehod.ISNA.rawValue
         self.prayerTimeManager = prayerTimeManager
+        self.date = dateFormmater.getAladhanString(from: Date())
         super.init()
         self.locationManager.qiblaFetcherDelegate = self
         
         locationManger.requestWhenInUseAuthorization()
-        listenToUpdates()
     }
 
-    private func listenToUpdates() {
-        prayerTimeManager.currentMehodBS.sink(receiveValue: {[weak self] method in
-            self?.timeMethod = method.rawValue
-        }).store(in: &subscriptions)
+    func listenToRealmUpdate() async {
+        notificationToken?.invalidate()
+        notificationToken = nil
+        let realm = try? await RealmDatabaseRepository.makeRealm()
+        realmInit = true
+        let allPrayerMethods = realm?.objects(PrayerMethod.self)
+        if allPrayerMethods!.isEmpty {
+            let allMethods = PrayerTimeMehod.allCases.map { PrayerMethod.init(rawValue: $0.rawValue)}
+            allMethods.first?.isSelected = true
+            try? realm?.write {
+                realm?.add(allMethods)
+            }
+            timeMethod = allMethods.first!.rawValue
+        } else {
+            if let slected = allPrayerMethods?.first(where: { $0.isSelected }) {
+                timeMethod = slected.rawValue
+            }
+        }
 
-        prayerTimeManager.prayerTimings.receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { error in
-            print(error)
-        }, receiveValue: { [weak self] prayer in
-            self?.prayerTime = prayer
-        }).store(in: &subscriptions)
+        notificationToken = allPrayerMethods?.observe {[weak self] update in
+            switch update {
+            case .initial(_):
+                print("init prayerTImes")
+            case .update(_, _, _, let modifications):
+                if let selected = modifications.first(where: { $0 != self?.timeMethod}) {
+                    print("selected \(selected)")
+                }
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 
+    func listenToDataUpdate() async {
+        dateNotificationToken?.invalidate()
+        dateNotificationToken = nil
+        let realm = try? await RealmDatabaseRepository.makeRealm()
+        prayerTimeRealm = realm?.objects(AladahnPrayerTimeAndDate.self)
+        dateNotificationToken = prayerTimeRealm?
+            .observe(on: .main) {[weak self] updates in
+            switch updates {
+            case .initial(let collection):
+               // self?.prayerTimeRealm = collection
+                guard let prayer = collection.first?.prayers else {
+                    return
+                }
+                self?.prayerTime = prayer
+            case .update(_, _, let insertions, _):
+                guard !insertions.isEmpty else { return }
+                let index = insertions[0]
+                guard let prayer = self?.prayerTimeRealm?[index], let date = prayer.exactDate else {
+                    return
+                }
+                self?.date = date
+                self?.prayerTime = prayer.prayers
+            case .error(_):
+                ()
+            }
+        }
+    }
 
-    func setPrayerTime(coordnaite: CLLocationCoordinate2D?) {
+    
+
+    func setPrayerTime(coordnaite: CLLocationCoordinate2D?, date: String) {
         guard let coordnaite = coordnaite else {
             return
         }
-        prayerTimeManager.getPrayerTime(coordinate: coordnaite, method: PrayerTimeMehod(rawValue: timeMethod)!)
+        DispatchQueue.global(qos: .default)
+            .async { [weak self] in
+                guard let self = self else { return }
+                self.prayerTimeManager
+                    .getPrayerTime(coordinate: coordnaite, method: PrayerTimeMehod(rawValue: self.timeMethod)!, date: date)
+            }
+    }
+
+    private func getDate() -> Date? {
+        dateFormmater.date(from: date)
+    }
+
+    func handleIncrmentingDate() {
+        guard let date = getDate(), let fixedDate = Calendar.current.date(byAdding: .day, value: 1, to: date) else { return }
+        setDate(fixedDate: fixedDate)
+    }
+    
+    func handleDecrementingDate() {
+        guard let date = getDate(), let fixedDate = Calendar.current.date(byAdding: .day, value: -1, to: date) else { return }
+        setDate(fixedDate: fixedDate)
+    }
+
+    private func setDate(fixedDate: Date) {
+        let fixedDateString = AladhanDateFormatter().getAladhanString(from: fixedDate)
+        guard let prayerTime = prayerTimeRealm?.first(where: { [weak self] element in
+            element.method == self?.timeMethod && fixedDateString == element.exactDate }) else {
+            setPrayerTime(coordnaite: coordination, date: fixedDateString)
+            return
+        }
+        self.date = fixedDateString
+        self.prayerTime = prayerTime.prayers
     }
 }
 extension PrayerViewModel: CLLocationManagerDelegate {

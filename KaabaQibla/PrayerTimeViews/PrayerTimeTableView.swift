@@ -15,16 +15,40 @@ struct PrayerTimeTableView: View {
     }
     var body: some View {
         VStack {
+            Text(prayerViewModel.date)
+            HStack {
+                Button(action: {
+                    prayerViewModel.handleDecrementingDate()
+                }, label: {
+                    Image.init(systemName: "arrow.backward")
+                }).padding(.leading)
+                Spacer()
+                Button(action: {
+                    prayerViewModel.handleIncrmentingDate()
+                }, label: {
+                    Image.init(systemName: "arrow.forward")
+                }).padding(.trailing)
+            }
             List(salat) { salatNameAndTime in
                 PrayerTimeCellView(salatAndTime: salatNameAndTime)
             }
-            Picker("Time methods:", selection: $prayerViewModel.timeMethod) {
+            Picker(selection: $prayerViewModel.timeMethod) {
                 ForEach(PrayerTimeMehod.allCases) { element in
-                    Text(element.textRepresentation).tag(element.id)
+                    Text(element.textRepresentation)
+                        .tag(element.id)
                 }
                 
-            }.padding(.horizontal)
-            Spacer()
+            } label: {
+                Text(PrayerTimeMehod(rawValue: prayerViewModel.timeMethod)!
+                    .textRepresentation)
+            }
+           
+           
+        }.onAppear {
+            Task {
+                await prayerViewModel.listenToRealmUpdate()
+                await prayerViewModel.listenToDataUpdate()
+            }
         }
     }
 }

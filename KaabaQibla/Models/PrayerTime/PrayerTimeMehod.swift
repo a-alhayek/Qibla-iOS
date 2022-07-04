@@ -76,7 +76,7 @@ enum PrayerTimeMehod: Int, Identifiable, CaseIterable {
         case .SAMR:
             return "Spiritual Administration of Muslims of Russia"
         case .MCW:
-            return "Moonsighting Committee Worldwide (also requires shafaq paramteer)"
+            return "Moonsighting Committee Worldwide\n (also requires shafaq paramteer)"
         }
     }
 }
