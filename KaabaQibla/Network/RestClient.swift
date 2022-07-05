@@ -12,6 +12,7 @@ import CoreLocation
 enum NetworkError: LocalizedError, CustomStringConvertible {
     case statusCode(code: Int)
     case decoding(decodingError: DecodingError)
+    case apiError(message: String)
     case unknown(Error)
 
 
@@ -22,12 +23,18 @@ enum NetworkError: LocalizedError, CustomStringConvertible {
     var description: String {
         switch self {
         case .statusCode(let code):
-            return "failureWithStatusCode \(code)"
+            return "failure With Status Code \(code)"
         case .decoding(decodingError: let decodingError):
-            return decodingError.localizedDescription
-        case .unknown(_):
-            return "Unkown"
+            return decodingError.errorDescription ?? decodingError.localizedDescription
+        case .unknown(let error):
+            return error.localizedDescription
+        case .apiError(let messgae):
+            return messgae
         }
+    }
+
+    var errorDescription: String? {
+        return description
     }
 }
 
@@ -44,18 +51,11 @@ final class RestClient {
               if let decodingError = error as? DecodingError {
                   return NetworkError.decoding(decodingError: decodingError)
               }
+              if let error = error as? RestPerformerError {
+                  return .apiError(message: error.localizedDescription)
+              }
               return .unknown(error)
           }.eraseToAnyPublisher()
-    }
-
-    public func preform<T: Decodable>(req: RestRequest) -> AnyPublisher<[T], NetworkError> {
-        return restPerformer.response(req: req.urlRequest).map(\.data)
-            .decode(type: [T].self, decoder: JSONDecoder()).mapError { error in
-                if let decodingError = error as? DecodingError {
-                    return NetworkError.decoding(decodingError: decodingError)
-                }
-                return .unknown(error)
-            }.eraseToAnyPublisher()
     }
 }
 

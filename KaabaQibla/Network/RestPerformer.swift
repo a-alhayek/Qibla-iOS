@@ -59,6 +59,6 @@ public final class RestPerformerImp: RestPerformer {
       }
       return (response, data)
       
-    }.mapError { _ in RestPerformerError.apiError(message: "error") }.eraseToAnyPublisher()
+    }.mapError { _ in RestPerformerError.apiError(message: "Network connection error") }.eraseToAnyPublisher()
   }
 }

@@ -15,7 +15,10 @@ class PrayerViewModel: NSObject, ObservableObject {
     @Published private (set) var prayerTime: [SalatNameAndTime] = []
     private let prayerClient: PrayerTimeClient
     private var locationManager: QiblaFetcher
-    private let prayerTimeManager: PrayerTimeManager
+    let prayerTimeManager: PrayerTimeManager
+
+    @Published var error: NetworkError?
+    
     private var realmInit = false
     private var prayerTimeRealm: Results<AladahnPrayerTimeAndDate>?
     private (set) var date: String
@@ -49,6 +52,11 @@ class PrayerViewModel: NSObject, ObservableObject {
         self.locationManager.qiblaFetcherDelegate = self
         
         locationManger.requestWhenInUseAuthorization()
+
+        prayerTimeManager.errorPublisher.receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] error in
+                self?.error = error
+            }).store(in: &subscriptions)
     }
 
     func listenToRealmUpdate() async {
@@ -118,7 +126,7 @@ class PrayerViewModel: NSObject, ObservableObject {
         guard let coordnaite = coordnaite else {
             return
         }
-        DispatchQueue.global(qos: .default)
+        DispatchQueue.global(qos: .userInitiated)
             .async { [weak self] in
                 guard let self = self else { return }
                 self.prayerTimeManager
@@ -141,7 +149,7 @@ class PrayerViewModel: NSObject, ObservableObject {
     }
 
     private func setDate(fixedDate: Date) {
-        let fixedDateString = AladhanDateFormatter().getAladhanString(from: fixedDate)
+        let fixedDateString = dateFormmater.getAladhanString(from: fixedDate)
         guard let prayerTime = prayerTimeRealm?.first(where: { [weak self] element in
             element.method == self?.timeMethod && fixedDateString == element.exactDate }) else {
             setPrayerTime(coordnaite: coordination, date: fixedDateString)

@@ -10,11 +10,14 @@ import Combine
 import CoreLocation
 
 protocol PrayerTimeManager {
+    var errorPublisher: PassthroughSubject<NetworkError, Never> { get }
     func getPrayerTime(coordinate: CLLocationCoordinate2D, method: PrayerTimeMehod, date: String)
     func selectMethod(_ prayerTimeMethod: PrayerTimeMehod)
 }
 
 class PrayerTimeManagerIM: PrayerTimeManager {
+    let errorPublisher = PassthroughSubject<NetworkError, Never>()
+    
 
     private let prayerClient: PrayerTimeClient
     private var subscriptions = Set<AnyCancellable>()
@@ -48,12 +51,16 @@ class PrayerTimeManagerIM: PrayerTimeManager {
         prayerClient.getPrayerTime(latitude: coordinate.latitude,
                                    longtitude: coordinate.longitude, method: method, date: date)
         .receive(on: DispatchQueue.global(qos: .default))
-            .sink(receiveCompletion: { (completion) in
-      //          self?.prayerTimings.send(completion: error)
+            .sink(receiveCompletion: { [weak self] (completion) in
+                switch completion {
+                case .finished:
+                    ()
+                case .failure(let error):
+                    self?.errorPublisher.send(error)
+                }
         }, receiveValue: { prayer in
             Task {
                 let realm = try? await RealmDatabaseRepository.makeRealm()
-                //rlet allObjects = realm?.objects(AladahnPrayerTimeAndDate.self)
                 try? realm?.write {
                     let data = prayer.data
                     data.method = method.rawValue

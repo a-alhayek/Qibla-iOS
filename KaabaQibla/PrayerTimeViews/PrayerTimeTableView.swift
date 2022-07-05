@@ -42,19 +42,31 @@ struct PrayerTimeTableView: View {
                 Text(PrayerTimeMehod(rawValue: prayerViewModel.timeMethod)!
                     .textRepresentation)
             }
-           
-           
         }.onAppear {
             Task {
                 await prayerViewModel.listenToRealmUpdate()
                 await prayerViewModel.listenToDataUpdate()
             }
         }
+        .alertPrayer($prayerViewModel.error)
     }
 }
 
 struct PrayerTimeTableView_Previews: PreviewProvider {
     static var previews: some View {
         PrayerTimeTableView().environmentObject(PrayerViewModel())
+    }
+}
+
+fileprivate extension View {
+    func alertPrayer(_ error: Binding<NetworkError?>, buttonTitle: String = "Dismiss") -> some View {
+        let qiblaError = error.wrappedValue
+        return alert(isPresented: .constant(qiblaError != nil), error: qiblaError) { _ in
+            Button(buttonTitle) {
+                error.wrappedValue = nil
+            }
+        } message: { error in
+            Text("Please try again")
+        }
     }
 }
