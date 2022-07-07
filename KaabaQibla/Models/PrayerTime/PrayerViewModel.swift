@@ -112,6 +112,12 @@ class PrayerViewModel: NSObject, ObservableObject {
                 guard let prayer = self?.prayerTimeRealm?[index], let date = prayer.exactDate else {
                     return
                 }
+                let frozenPrayer = prayer.freeze()
+                DispatchQueue.global(qos: .default).async {
+                    Task {
+                        await NotificationManagerImp.current().registerNotification(with: frozenPrayer)
+                    }
+                }
                 self?.date = date
                 self?.prayerTime = prayer.prayers
             case .error(_):

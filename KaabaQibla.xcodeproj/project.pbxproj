@@ -14,6 +14,7 @@
 		0C05B640284ED34F0060B7A6 /* PrayerTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C05B63F284ED34F0060B7A6 /* PrayerTimeManager.swift */; };
 		0C05B643284EDB800060B7A6 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 0C05B642284EDB800060B7A6 /* Swinject */; };
 		0C05B648284EDBEF0060B7A6 /* AladahnContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C05B647284EDBEF0060B7A6 /* AladahnContainer.swift */; };
+		0C351965287504890043D402 /* PrayerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C351964287504890043D402 /* PrayerNotification.swift */; };
 		0C364E8A282D12B1006975CF /* CompassImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C364E89282D12B0006975CF /* CompassImage.swift */; };
 		0C364E8C282D13A0006975CF /* KabbaImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C364E8B282D13A0006975CF /* KabbaImage.swift */; };
 		0C364E8E282D14A7006975CF /* QiblaHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C364E8D282D14A7006975CF /* QiblaHomeScreen.swift */; };
@@ -68,6 +69,7 @@
 		0C05B63C284EBFDE0060B7A6 /* AladahnRealmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AladahnRealmConfig.swift; sourceTree = "<group>"; };
 		0C05B63F284ED34F0060B7A6 /* PrayerTimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTimeManager.swift; sourceTree = "<group>"; };
 		0C05B647284EDBEF0060B7A6 /* AladahnContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AladahnContainer.swift; sourceTree = "<group>"; };
+		0C351964287504890043D402 /* PrayerNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerNotification.swift; sourceTree = "<group>"; };
 		0C364E89282D12B0006975CF /* CompassImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassImage.swift; sourceTree = "<group>"; };
 		0C364E8B282D13A0006975CF /* KabbaImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KabbaImage.swift; sourceTree = "<group>"; };
 		0C364E8D282D14A7006975CF /* QiblaHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaHomeScreen.swift; sourceTree = "<group>"; };
@@ -157,6 +159,14 @@
 			path = DI;
 			sourceTree = "<group>";
 		};
+		0C351963287504750043D402 /* NotificationManager */ = {
+			isa = PBXGroup;
+			children = (
+				0C351964287504890043D402 /* PrayerNotification.swift */,
+			);
+			path = NotificationManager;
+			sourceTree = "<group>";
+		};
 		0C554D2A282B594C00BD24D3 = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +236,7 @@
 		0C554D65282B5A2C00BD24D3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0C351963287504750043D402 /* NotificationManager */,
 				0C05B63E284ED2A50060B7A6 /* Manager */,
 				0CA159CF2842B0AB00F6AABB /* PrayerTime */,
 				0CA159CE2842B09200F6AABB /* QiblaModels */,
@@ -451,6 +462,7 @@
 				0CA159DC28485C9400F6AABB /* PrayerTimeCellView.swift in Sources */,
 				0CA159D9284849F000F6AABB /* PrayerViewModel.swift in Sources */,
 				0CB60E79282BCBF500552392 /* QiblaViewModel.swift in Sources */,
+				0C351965287504890043D402 /* PrayerNotification.swift in Sources */,
 				0C554D6C282B5C8300BD24D3 /* RestPerformer.swift in Sources */,
 				0CA159C92836DF2200F6AABB /* PrayerTimeRouter.swift in Sources */,
 				0CA159C72836DEBE00F6AABB /* API.swift in Sources */,

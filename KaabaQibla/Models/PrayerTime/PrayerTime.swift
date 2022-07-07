@@ -100,5 +100,22 @@ class AladahnDate: Object, Decodable {
     @Persisted var day: String
 
     @Persisted var year: String
+    @Persisted var month: Month?
+    @Persisted var weekday: Weekday?
     //let holidays: [String]?
+}
+
+class Month: Object, Decodable {
+    @Persisted var number: Int
+    @Persisted var en: String
+    @Persisted var ar: String?
+}
+
+class Weekday: Object, Decodable {
+    @Persisted var en: String
+    @Persisted var ar: String?
+    
+    var weekday: PrayerWeekDays? {
+        PrayerWeekDays(string: en)
+    }
 }

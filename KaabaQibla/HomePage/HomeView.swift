@@ -24,6 +24,16 @@ struct HomeView: View {
                         Text("Prayer Time")
                     }
                 }
+        }.onAppear {
+            let notificationManager = NotificationManagerImp.current()
+            switch notificationManager.settings {
+            case .denied, .notDetermined:
+                Task {
+                    await notificationManager.requestAuthorization()
+                }
+            default:
+                ()
+            }
         }
     }
 }

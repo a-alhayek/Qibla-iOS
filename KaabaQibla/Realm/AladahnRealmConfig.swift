@@ -46,7 +46,9 @@ class AladahnMigration: RealmMigration {
                                        PrayerDate.self,
                                        PrayerTime.self,
                                        AladahnPrayerTimeAndDate.self,
-                                       PrayerMethod.self
+                                       PrayerMethod.self,
+                                       Month.self,
+                                       Weekday.self
                                        ]
     
     var migrationBlock: MigrationBlock?
