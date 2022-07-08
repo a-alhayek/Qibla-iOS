@@ -112,18 +112,24 @@ class QiblaViewModel: NSObject, ObservableObject {
 
 extension QiblaViewModel: QiblaFetcherDelegate {
     func locationManager(_ manager: QiblaFetcher, didUpdateHeading newHeading: CLHeading) {
-        setNewHeadingIfHeadingIsValid(newHeading)
-        checkIfQiblaMatchesUserHeadingAndGenerateFeedback()
+        DispatchQueue.main.async { [weak self] in
+            self?.setNewHeadingIfHeadingIsValid(newHeading)
+            self?.checkIfQiblaMatchesUserHeadingAndGenerateFeedback()
+        }
     }
 
     func locationManagerDidChangeAuthorization(_ manager: QiblaFetcher) {
-        locationPermissionState = manager.authorizationStatus
-        subscribeToLocationManager()
+        DispatchQueue.main.async { [weak self] in
+            self?.locationPermissionState = manager.authorizationStatus
+            self?.subscribeToLocationManager()
+        }
     }
 
     func locationManager(_ manager: QiblaFetcher, didUpdateLocations locations: [CLLocation]) {
-        deviceLastLocation = locations.first
-        fetchCountryAndCity(for: locations.first)
+        DispatchQueue.main.async { [weak self] in
+            self?.deviceLastLocation = locations.first
+            self?.fetchCountryAndCity(for: locations.first)
+        }
     }
 }
 

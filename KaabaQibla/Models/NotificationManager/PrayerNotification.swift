@@ -50,39 +50,37 @@ class NotificationManagerImp: NSObject, UNUserNotificationCenterDelegate {
         UNNotificationPresentationOptions.init()
     }
     
-    
-    //"UNNotificationDefaultActionIdentifier"
-    //"UNNotificationDismissActionIdentifier"
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         print(response.description)
     }
 
     func registerNotification(with timeAndDate: AladahnPrayerTimeAndDate) async {
-        guard let weekday = timeAndDate.date?.gregorian?.weekday?.weekday?.rawValue//, let day = timeAndDate.date?.gregorian?.day
-        else { return }
-        var prayerNotification = PrayerNotification.allCases
-        var dateComponents = DateComponents()
-        dateComponents.calendar = Calendar.current
-        dateComponents.weekday = weekday
-        dateComponents.day
-        let timeNow = timeAndDate.prayers[0].salatTime12.split(separator: ":")
-        let hour = timeNow[0]
-        let min = timeNow[1]
-        dateComponents.hour = 21
-        dateComponents.minute = 4
+        let currentDateText = AladhanDateFormatter().getAladhanString(from: Date())
+        guard let weekday = timeAndDate.date?.gregorian?.weekday?.weekday?.rawValue,
+              let dateText = timeAndDate.exactDate,
+                dateText >= currentDateText else { return }
+        
+        let prayerNotification = PrayerNotification.allCases
+        for prayer in prayerNotification {
+            var dateComponents = DateComponents()
+            dateComponents.calendar = Calendar.current
+            dateComponents.weekday = weekday
+            let timeNow = timeAndDate.prayers[0].salatTime12.split(separator: ":")
+            let hour = timeNow[0]
+            let min = timeNow[1]
+            dateComponents.hour = Int(hour)
+            dateComponents.minute = Int(min)
 
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        let id = prayerNotification[0].notificationIdenifier
-        do {
-            let current = UNUserNotificationCenter.current()
-            try await current.add(UNNotificationRequest(identifier: id,
-                                                                         content: prayerNotification[0].notification,
-                                                                         trigger: trigger))
-            let notificationRequests = await current.pendingNotificationRequests()
-            print(notificationRequests)
-            
-        } catch {
-            print(error.localizedDescription)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            let id = prayer.notificationIdenifier + dateText
+            do {
+                let current = UNUserNotificationCenter.current()
+                try await current.add(UNNotificationRequest(identifier: id,
+                                                                             content: prayerNotification[0].notification,
+                                                                             trigger: trigger))
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 }
@@ -107,6 +105,7 @@ enum PrayerNotification: String, CaseIterable {
         content.title = "Salat Al\(rawValue)"
         content.body = "Allah Akbar, Allah Akbar..."
         content.categoryIdentifier = PrayerNotificationCatagory.aladahn.rawValue
+        content.sound = .default
         return content
     }
 }

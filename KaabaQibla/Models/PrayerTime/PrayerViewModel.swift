@@ -53,13 +53,15 @@ class PrayerViewModel: NSObject, ObservableObject {
         
         locationManger.requestWhenInUseAuthorization()
 
-        prayerTimeManager.errorPublisher.receive(on: DispatchQueue.main)
+        prayerTimeManager.errorPublisher
+            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] error in
                 self?.error = error
             }).store(in: &subscriptions)
     }
 
     func listenToRealmUpdate() async {
+        assert(Thread.isMainThread)
         notificationToken?.invalidate()
         notificationToken = nil
         let realm = try? await RealmDatabaseRepository.makeRealm()
@@ -93,6 +95,7 @@ class PrayerViewModel: NSObject, ObservableObject {
     }
 
     func listenToDataUpdate() async {
+        assert(Thread.isMainThread)
         dateNotificationToken?.invalidate()
         dateNotificationToken = nil
         let realm = try? await RealmDatabaseRepository.makeRealm()
@@ -113,15 +116,19 @@ class PrayerViewModel: NSObject, ObservableObject {
                     return
                 }
                 let frozenPrayer = prayer.freeze()
-                DispatchQueue.global(qos: .default).async {
-                    Task {
-                        await NotificationManagerImp.current().registerNotification(with: frozenPrayer)
-                    }
-                }
+                self?.registerNotifiation(frozenPrayer: frozenPrayer)
                 self?.date = date
                 self?.prayerTime = prayer.prayers
             case .error(_):
                 ()
+            }
+        }
+    }
+
+    private func registerNotifiation(frozenPrayer: AladahnPrayerTimeAndDate) {
+        DispatchQueue.global(qos: .default).async {
+            Task {
+                await NotificationManagerImp.current().registerNotification(with: frozenPrayer)
             }
         }
     }
@@ -161,8 +168,12 @@ class PrayerViewModel: NSObject, ObservableObject {
             setPrayerTime(coordnaite: coordination, date: fixedDateString)
             return
         }
-        self.date = fixedDateString
-        self.prayerTime = prayerTime.prayers
+        DispatchQueue.main.async { [weak self] in
+            self?.date = fixedDateString
+            self?.prayerTime = prayerTime.prayers
+            let frozenPrayer = prayerTime.freeze()
+            self?.registerNotifiation(frozenPrayer: frozenPrayer)
+        }
     }
 }
 extension PrayerViewModel: CLLocationManagerDelegate {
