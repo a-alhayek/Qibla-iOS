@@ -105,7 +105,7 @@ enum PrayerNotification: String, CaseIterable {
         content.title = "Salat Al\(rawValue)"
         content.body = "Allah Akbar, Allah Akbar..."
         content.categoryIdentifier = PrayerNotificationCatagory.aladahn.rawValue
-        content.sound = .default
+        content.sound = UNNotificationSound(named: .init("Adhan_1.caf"))
         return content
     }
 }
