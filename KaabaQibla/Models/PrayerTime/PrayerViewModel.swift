@@ -22,6 +22,7 @@ class PrayerViewModel: NSObject, ObservableObject {
     private var realmInit = false
     private var prayerTimeRealm: Results<AladahnPrayerTimeAndDate>?
     private (set) var date: String
+    private (set) var day: String
     @Published  var timeMethod: Int = 0
     {
         didSet {
@@ -47,7 +48,9 @@ class PrayerViewModel: NSObject, ObservableObject {
         self.prayerClient = prayerClient
         self.locationManager = locationManger
         self.prayerTimeManager = prayerTimeManager
-        self.date = dateFormmater.getAladhanString(from: Date())
+        let date = Date()
+        self.date = dateFormmater.getAladhanString(from: date)
+        self.day = dateFormmater.getDayFrom(date: date)
         super.init()
         self.locationManager.qiblaFetcherDelegate = self
         
@@ -112,12 +115,14 @@ class PrayerViewModel: NSObject, ObservableObject {
             case .update(_, _, let insertions, _):
                 guard !insertions.isEmpty else { return }
                 let index = insertions[0]
-                guard let prayer = self?.prayerTimeRealm?[index], let date = prayer.exactDate else {
+                guard let prayer = self?.prayerTimeRealm?[index], let date = prayer.exactDate,
+                      let weekday = prayer.weekday else {
                     return
                 }
                 let frozenPrayer = prayer.freeze()
                 self?.registerNotifiation(frozenPrayer: frozenPrayer)
                 self?.date = date
+                self?.day = weekday
                 self?.prayerTime = prayer.prayers
             case .error(_):
                 ()
@@ -163,12 +168,14 @@ class PrayerViewModel: NSObject, ObservableObject {
 
     private func setDate(fixedDate: Date) {
         let fixedDateString = dateFormmater.getAladhanString(from: fixedDate)
+        let weekday = dateFormmater.getDayFrom(date: fixedDate)
         guard let prayerTime = prayerTimeRealm?.first(where: { [weak self] element in
             element.method == self?.timeMethod && fixedDateString == element.exactDate }) else {
             setPrayerTime(coordnaite: coordination, date: fixedDateString)
             return
         }
         DispatchQueue.main.async { [weak self] in
+            self?.day = weekday
             self?.date = fixedDateString
             self?.prayerTime = prayerTime.prayers
             let frozenPrayer = prayerTime.freeze()

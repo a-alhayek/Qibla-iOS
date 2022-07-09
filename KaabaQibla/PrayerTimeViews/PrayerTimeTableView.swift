@@ -15,20 +15,30 @@ struct PrayerTimeTableView: View {
     }
     var body: some View {
         VStack {
-            Text(prayerViewModel.date)
+            
             HStack {
                 Button(action: {
                     prayerViewModel.handleDecrementingDate()
                 }, label: {
                     Image.init(systemName: "arrow.backward")
                 }).padding(.leading)
+                
                 Spacer()
+                VStack(spacing: 4) {
+                    Text(prayerViewModel.day)
+                        .font(.title2)
+                    Text(prayerViewModel.date)
+                
+                }
+                Spacer()
+                
                 Button(action: {
                     prayerViewModel.handleIncrmentingDate()
                 }, label: {
                     Image.init(systemName: "arrow.forward")
                 }).padding(.trailing)
             }
+            
             List(salat) { salatNameAndTime in
                 PrayerTimeCellView(salatAndTime: salatNameAndTime)
             }

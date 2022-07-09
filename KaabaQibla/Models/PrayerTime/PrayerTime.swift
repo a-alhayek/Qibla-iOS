@@ -35,6 +35,15 @@ class AladahnPrayerTimeAndDate: Object, Decodable {
         date?.gregorian?.date
     }
 
+    var weekday: String? {
+        
+        guard let prayerWD = date?.gregorian?.weekday?.weekday
+        else { return nil}
+           
+        return AladhanDateFormatter()
+            .getWeekday(offset: prayerWD.rawValue - 1)
+    }
+
     var prayerTimings: PrayerTime {
         timings!
     }

@@ -70,7 +70,7 @@ class QiblaViewModel: NSObject, ObservableObject {
 
     private func setNewHeadingIfHeadingIsValid(_ newHeading: CLHeading) {
         
-        guard ((try? newHeading.headingAccuracy >= 0) != nil) else {
+        guard ((newHeading.headingAccuracy >= 0)) else {
             throwInvalidHeadingError()
             return
         }
