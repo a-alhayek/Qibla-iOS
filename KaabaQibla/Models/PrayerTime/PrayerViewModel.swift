@@ -13,6 +13,7 @@ import RealmSwift
 class PrayerViewModel: NSObject, ObservableObject {
     private let dateFormmater = AladhanDateFormatter()
     @Published private (set) var prayerTime: [SalatNameAndTime] = []
+    
     private let prayerClient: PrayerTimeClient
     private var locationManager: QiblaFetcher
     let prayerTimeManager: PrayerTimeManager

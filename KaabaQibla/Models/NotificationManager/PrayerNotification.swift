@@ -56,7 +56,8 @@ class NotificationManagerImp: NSObject, UNUserNotificationCenterDelegate {
 
     func registerNotification(with timeAndDate: AladahnPrayerTimeAndDate) async {
         let currentDateText = AladhanDateFormatter().getAladhanString(from: Date())
-        guard let weekday = timeAndDate.date?.gregorian?.weekday?.weekday?.rawValue,
+        guard
+            let weekday = timeAndDate.date?.gregorian?.weekday?.weekday?.rawValue,
               let dateText = timeAndDate.exactDate,
                 dateText >= currentDateText else { return }
         
@@ -133,7 +134,7 @@ enum PrayerWeekDays: Int {
             self = .thursday
         case "Friday":
             self = .friday
-        case "saturday":
+        case "Saturday":
             self = .saturday
         default:
             return nil

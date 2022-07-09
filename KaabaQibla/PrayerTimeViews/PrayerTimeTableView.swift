@@ -10,6 +10,7 @@ import Combine
 
 struct PrayerTimeTableView: View {
     @EnvironmentObject var prayerViewModel: PrayerViewModel
+    
     var salat: [SalatNameAndTime] {
         prayerViewModel.prayerTime
     }
@@ -52,13 +53,18 @@ struct PrayerTimeTableView: View {
                 Text(PrayerTimeMehod(rawValue: prayerViewModel.timeMethod)!
                     .textRepresentation)
             }
-        }.onAppear {
-            Task {
-                await prayerViewModel.listenToRealmUpdate()
-                await prayerViewModel.listenToDataUpdate()
-            }
+        }
+        .onAppear {
+            bindsViewModel()
         }
         .alertPrayer($prayerViewModel.error)
+    }
+
+    private func bindsViewModel() {
+        Task {
+            await prayerViewModel.listenToRealmUpdate()
+            await prayerViewModel.listenToDataUpdate()
+        }
     }
 }
 
