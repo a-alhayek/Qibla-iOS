@@ -66,7 +66,7 @@ class NotificationManagerImp: NSObject, UNUserNotificationCenterDelegate {
             var dateComponents = DateComponents()
             dateComponents.calendar = Calendar.current
             dateComponents.weekday = weekday
-            let timeNow = timeAndDate.prayers[0].salatTime12.split(separator: ":")
+            let timeNow = timeAndDate.prayers[prayer.offset].salatTime.split(separator: ":")
             let hour = timeNow[0]
             let min = timeNow[1]
             dateComponents.hour = Int(hour)
@@ -77,7 +77,7 @@ class NotificationManagerImp: NSObject, UNUserNotificationCenterDelegate {
             do {
                 let current = UNUserNotificationCenter.current()
                 try await current.add(UNNotificationRequest(identifier: id,
-                                                                             content: prayerNotification[0].notification,
+                                                                             content: prayer.notification,
                                                                              trigger: trigger))
             } catch {
                 print(error.localizedDescription)
@@ -108,6 +108,21 @@ enum PrayerNotification: String, CaseIterable {
         content.categoryIdentifier = PrayerNotificationCatagory.aladahn.rawValue
         content.sound = UNNotificationSound(named: .init("Adhan_1.caf"))
         return content
+    }
+
+    var offset: Int {
+        switch self {
+        case .fajer:
+            return 0
+        case .duhar:
+            return 2
+        case .asar:
+            return 3
+        case .maghrib:
+            return 4
+        case .isha:
+            return 5
+        }
     }
 }
 

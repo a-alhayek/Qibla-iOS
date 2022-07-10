@@ -20,7 +20,7 @@ class AladhanDateFormatter: DateFormatter {
     }
 
     func getDayFrom(date: Date) -> String {
-        let weekdayIndex = calendar.dateComponents([.weekday], from: Date()).weekday!
+        let weekdayIndex = calendar.dateComponents([.weekday], from: date).weekday!
         
         let weekday = getWeekday(offset: weekdayIndex - 1)
         return weekday
