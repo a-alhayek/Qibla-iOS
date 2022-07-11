@@ -103,8 +103,8 @@ enum PrayerNotification: String, CaseIterable {
 
     var notification: UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
-        content.title = "Salat Al\(rawValue)"
-        content.body = "Allah Akbar, Allah Akbar..."
+        content.title = "Athan Salat Al\(rawValue)"
+        content.body = "Allah Akbar, Allah Akbar"
         content.categoryIdentifier = PrayerNotificationCatagory.aladahn.rawValue
         content.sound = UNNotificationSound(named: .init("Adhan_1.caf"))
         return content

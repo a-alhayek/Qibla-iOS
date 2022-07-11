@@ -1,0 +1,51 @@
+/* 
+  Localizable.strings
+  KaabaQibla
+
+  Created by ahmad alhayek on 7/10/22.
+  
+*/
+
+/* Methods names*/
+"Muslim World League" = "رابطة العالم الإسلامي";
+
+"Islamic Society of North America" = "مجتمع الاسلامي تبع اميركا شمالية";
+
+"Egyptian General Authority of Survey" = "الهيئة المصرية العامة للمساحة";
+
+"Umm Al-Qura University, Makkah" = "جامعة أم القرى";
+
+"University of Islamic Sciences, Karachi" = "جامعة للعلوم الاسلامية، كراتشي";
+
+"Institute of Geophysics, University of Tehran" = "مركز الجيوفيزياء في جامعة طهران";
+
+"Shia Ithna-Ashari" = "شيعة اثنا اشعري، مركز ليفا";
+
+"Gulf Region" = "منطقة الخليج";
+
+"Kuwait" = "الكويت";
+
+"Qatar" = "قطر";
+
+"Majlis Ugama Islam Singapura, Singapore" = "مجلس الدين الاسلامي في سنغفورا";
+
+"Union Organization Islamic de France" = "منظمة الاتحاد الإسلامية الفرنسية";
+
+"Diyanet İşleri Başkanı, Turkey" = "رئيس الشؤون الديانات التركية";
+
+"Spiritual Administration of Muslims of Russia" = "الإدارة الروحية لمسلمي روسيا";
+
+"Moonsighting Committee Worldwide" = "لجنة رايا القمر العالمية";
+
+
+"Fajr" = "الفجر";
+"Sunrise" = "شروق الشمس";
+"Dhuhr" = "الظهر";
+"Asr" = "العصر";
+"Maghrib" = "المفرب";
+"Isha" = "العشاء";
+"Imsak" = "آمساك";
+
+"Prayer Time" = "أوقات الصلاة";
+
+"Qibla" = "القبلة";

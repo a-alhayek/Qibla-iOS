@@ -7,10 +7,11 @@
 
 import Foundation
 import RealmSwift
+import SwiftUI
 struct SalatNameAndTime: Identifiable {
     var id = UUID()
     private let dateFormatter = AladhanDateFormatter()
-    let salatName: String
+    let salatName: LocalizedStringKey
     let salatTime: String
 
     var salatTime12: String {
@@ -64,7 +65,7 @@ class AladahnPrayerTimeAndDate: Object, Decodable {
     }
 }
 
-enum PrayersName: String {
+enum PrayersName: LocalizedStringKey {
     case Fajr
     case sunrise = "Sunrise"
     case dhuhr = "Dhuhr"

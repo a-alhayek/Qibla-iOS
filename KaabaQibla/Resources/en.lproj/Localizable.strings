@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  KaabaQibla
+
+  Created by ahmad alhayek on 7/10/22.
+  
+*/
+
+/* Bundle name */
+"CFBundleName" = "Fruta";
+
+/* Bundle display name */
+"CFBundleDisplayName" = "Fruta";
+
+/* Copyright (human-readable) */
+"NSHumanReadableCopyright" = "Copyright © 2020-2021 Apple. All rights reserved.";
+

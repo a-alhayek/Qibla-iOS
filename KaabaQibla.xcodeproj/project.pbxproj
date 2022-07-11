@@ -21,6 +21,8 @@
 		0C364E92282F0AE4006975CF /* QiblaFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C364E91282F0AE4006975CF /* QiblaFetcher.swift */; };
 		0C364E94282F1276006975CF /* QiblaViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C364E93282F1276006975CF /* QiblaViewModelTests.swift */; };
 		0C3B280C287852E2000F1265 /* Adhan_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0C3B280B287852E2000F1265 /* Adhan_1.caf */; };
+		0C3B2817287B82A1000F1265 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C3B2819287B82A1000F1265 /* Localizable.strings */; };
+		0C3B281D287C4300000F1265 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C3B281F287C4300000F1265 /* InfoPlist.strings */; };
 		0C554D37282B594C00BD24D3 /* KaabaQiblaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C554D36282B594C00BD24D3 /* KaabaQiblaApp.swift */; };
 		0C554D3B282B594F00BD24D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C554D3A282B594F00BD24D3 /* Assets.xcassets */; };
 		0C554D3E282B594F00BD24D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C554D3D282B594F00BD24D3 /* Preview Assets.xcassets */; };
@@ -77,6 +79,10 @@
 		0C364E91282F0AE4006975CF /* QiblaFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaFetcher.swift; sourceTree = "<group>"; };
 		0C364E93282F1276006975CF /* QiblaViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaViewModelTests.swift; sourceTree = "<group>"; };
 		0C3B280B287852E2000F1265 /* Adhan_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Adhan_1.caf; sourceTree = "<group>"; };
+		0C3B2818287B82A1000F1265 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0C3B281A287B82A3000F1265 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0C3B281E287C4300000F1265 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0C3B2820287C4301000F1265 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C554D33282B594C00BD24D3 /* KaabaQibla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KaabaQibla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C554D36282B594C00BD24D3 /* KaabaQiblaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaabaQiblaApp.swift; sourceTree = "<group>"; };
 		0C554D3A282B594F00BD24D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -169,6 +175,15 @@
 			path = NotificationManager;
 			sourceTree = "<group>";
 		};
+		0C3B280D287B8096000F1265 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0C3B2819287B82A1000F1265 /* Localizable.strings */,
+				0C3B281F287C4300000F1265 /* InfoPlist.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		0C554D2A282B594C00BD24D3 = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +208,7 @@
 		0C554D35282B594C00BD24D3 /* KaabaQibla */ = {
 			isa = PBXGroup;
 			children = (
+				0C3B280D287B8096000F1265 /* Resources */,
 				0C05B646284EDBC50060B7A6 /* DI */,
 				0C05B639284E82370060B7A6 /* Realm */,
 				0CA159DA28485C2700F6AABB /* PrayerTimeViews */,
@@ -409,6 +425,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = 0C554D2A282B594C00BD24D3;
 			packageReferences = (
@@ -433,8 +450,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C554D3E282B594F00BD24D3 /* Preview Assets.xcassets in Resources */,
+				0C3B2817287B82A1000F1265 /* Localizable.strings in Resources */,
 				0C3B280C287852E2000F1265 /* Adhan_1.caf in Resources */,
 				0C554D3B282B594F00BD24D3 /* Assets.xcassets in Resources */,
+				0C3B281D287C4300000F1265 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +540,27 @@
 			targetProxy = 0C554D53282B595000BD24D3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0C3B2819287B82A1000F1265 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C3B2818287B82A1000F1265 /* en */,
+				0C3B281A287B82A3000F1265 /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		0C3B281F287C4300000F1265 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C3B281E287C4300000F1265 /* en */,
+				0C3B2820287C4301000F1265 /* ar */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0C554D5A282B595000BD24D3 /* Debug */ = {

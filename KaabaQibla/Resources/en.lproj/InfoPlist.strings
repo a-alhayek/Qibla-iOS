@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  KaabaQibla
+
+  Created by ahmad alhayek on 7/11/22.
+  
+*/
+
+/* Bundle name */
+"CFBundleName" = "KaabaQibla";
+
+/* Bundle display name */
+"CFBundleDisplayName" = "KaabaQibla";
+
+/* Copyright (human-readable) */
+"NSHumanReadableCopyright" = "Copyright © 2022-2023 Alhayek. All rights reserved.";

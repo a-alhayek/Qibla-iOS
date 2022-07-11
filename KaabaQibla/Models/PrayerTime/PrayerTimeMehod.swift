@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import SwiftUI
 
 class PrayerMethod: Object {
     @Persisted(primaryKey: true) var rawValue: Int
@@ -45,10 +46,10 @@ enum PrayerTimeMehod: Int, Identifiable, CaseIterable {
     case MCW
     
 
-    var textRepresentation: String {
+    var textRepresentation: LocalizedStringKey {
         switch self {
         case .SIA:
-            return "Shia Ithna-Ansari"
+            return "Shia Ithna-Ashari"
         case .UISK:
             return "University of Islamic Sciences, Karachi"
         case .ISNA:
@@ -70,13 +71,13 @@ enum PrayerTimeMehod: Int, Identifiable, CaseIterable {
         case .MUIS:
             return "Majlis Ugama Islam Singapura, Singapore"
         case .UQIF:
-            return "Union Organization islamic de France"
+            return "Union Organization Islamic de France"
         case .DIBT:
-            return "Diyanet İşleri Başkanlığı, Turkey"
+            return "Diyanet İşleri Başkanı, Turkey"
         case .SAMR:
             return "Spiritual Administration of Muslims of Russia"
         case .MCW:
-            return "Moonsighting Committee Worldwide\n (also requires shafaq paramteer)"
+            return "Moonsighting Committee Worldwide"
         }
     }
 }
