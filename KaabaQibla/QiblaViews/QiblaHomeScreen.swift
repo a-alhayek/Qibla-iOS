@@ -11,12 +11,10 @@ struct QiblaHomeScreen: View {
     @EnvironmentObject var qiblaModel: QiblaViewModel
     var body: some View {
         switch qiblaModel.locationPermissionState {
-        case .notDetermined, .restricted, .denied:
-            requestAuthorization
         case .authorized, .authorizedAlways, .authorizedWhenInUse:
             QiblaView()
         default:
-            Text("Unexpected behavior")
+            requestAuthorization
         }
         
     }

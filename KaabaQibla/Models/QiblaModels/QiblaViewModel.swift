@@ -147,12 +147,14 @@ extension QiblaViewModel: CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        locationPermissionState = manager.authorizationStatus
+        self.error = QiblaError.locationManagerError
     }
 }
 
 enum QiblaError: LocalizedError {
     case invalidHeadingAccuracy
+    case locationManagerError
 
     var errorDescription: String? {
         return description
@@ -162,6 +164,8 @@ enum QiblaError: LocalizedError {
         switch self {
         case .invalidHeadingAccuracy:
             return "try to stand still or stay away from any strong magnetic field"
+        case .locationManagerError:
+            return "Please allow location or turn on your network"
         }
     }
 }
@@ -171,6 +175,9 @@ extension QiblaError: CustomStringConvertible {
         switch self {
         case .invalidHeadingAccuracy:
             return "the compass cannot get a good reading at the moment."
+        
+        case .locationManagerError:
+            return "application location is off "
         }
     }
 }

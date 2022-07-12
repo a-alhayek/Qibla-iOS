@@ -78,11 +78,11 @@ fileprivate extension View {
     func alertPrayer(_ error: Binding<NetworkError?>, buttonTitle: String = "Dismiss") -> some View {
         let qiblaError = error.wrappedValue
         return alert(isPresented: .constant(qiblaError != nil), error: qiblaError) { _ in
-            Button(buttonTitle) {
+            Button(LocalizedStringKey(buttonTitle)) {
                 error.wrappedValue = nil
             }
         } message: { error in
-            Text("Please try again")
+            Text(LocalizedStringKey("Please try again"))
         }
     }
 }
