@@ -177,7 +177,7 @@ extension QiblaError: CustomStringConvertible {
             return "the compass cannot get a good reading at the moment."
         
         case .locationManagerError:
-            return "application location is off "
+            return "application location is off"
         }
     }
 }

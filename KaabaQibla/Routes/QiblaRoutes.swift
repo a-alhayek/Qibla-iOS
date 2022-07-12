@@ -10,6 +10,7 @@ import CoreLocation
 
 enum QiblaRoutes: RestRequest {
     case qiblaDirection(coordinate: CLLocationCoordinate2D)
+    case GodBeautifulNames
 
     var baseURL: URL {
         API.Aladhan.url
@@ -21,7 +22,7 @@ enum QiblaRoutes: RestRequest {
     
     var httpMethod: HttpMethod {
         switch self {
-        case .qiblaDirection:
+        case .qiblaDirection, .GodBeautifulNames:
             return .get
         }
     }
@@ -32,6 +33,8 @@ enum QiblaRoutes: RestRequest {
             let latitude = coordinate.latitude
             let longitude = coordinate.longitude
             return "/v1/qibla/\(latitude)/\(longitude)"
+        case .GodBeautifulNames:
+            return "/asmaAlHusna"
         }
     }
     

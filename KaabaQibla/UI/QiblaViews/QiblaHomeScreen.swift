@@ -13,13 +13,16 @@ struct QiblaHomeScreen: View {
         switch qiblaModel.locationPermissionState {
         case .authorized, .authorizedAlways, .authorizedWhenInUse:
             QiblaView()
+        case .denied:
+            EnableLocationUserInstructions()
         default:
             requestAuthorization
         }
-        
     }
+    
     var requestAuthorization: some View {
         Button {
+            /// open settings tab 
             qiblaModel.requestPermission()
         } label: {
             Text("request authorization")

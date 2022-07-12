@@ -63,6 +63,10 @@ protocol QiblaClient {
     func getQibla(for coordinate: CLLocationCoordinate2D) -> AnyPublisher<KaabaHeading, NetworkError>
 }
 
+protocol GBNamesClient {
+    func getGBNames() -> AnyPublisher<GBNamesResponse, Never>
+}
+
 final class QiblaClientImp: QiblaClient {
     let restClient: RestClient
 
