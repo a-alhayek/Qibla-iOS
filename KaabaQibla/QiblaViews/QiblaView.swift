@@ -21,11 +21,21 @@ struct QiblaView: View {
     }
     @EnvironmentObject var qiblaModel: QiblaViewModel
     var kaabaHeading: Double {
-        qiblaModel.currentQibla?.data.direction ?? 0
+        let direction = qiblaModel.currentQibla?.data.direction ?? 0
+        if UIApplication.shared
+            .userInterfaceLayoutDirection == .rightToLeft  {
+            return direction * -1
+        }
+        return direction
     }
     
     var imageRotationAngle: Double {
-        Double(Int((-userHeading + 360) % 360))
+        let result = Double(Int((userHeading + 360) % 360))
+        if UIApplication.shared
+            .userInterfaceLayoutDirection == .leftToRight  {
+            return result * -1
+        }
+        return result
     }
     
     var userHeading: Int {
@@ -69,6 +79,7 @@ struct QiblaView: View {
 struct QiblaView_Previews: PreviewProvider {
     static var previews: some View {
         QiblaView().environmentObject(QiblaViewModel())
+            .environment(\.locale, .init(identifier: "ar"))
         
     }
 }

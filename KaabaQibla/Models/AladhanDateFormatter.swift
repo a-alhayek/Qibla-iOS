@@ -33,7 +33,6 @@ class AladhanDateFormatter: DateFormatter {
     }
 
     func convertTimeToTweleveHour(_ text: String) -> String? {
-        changeLocalToEn()
         dateFormat = "HH:mm"
         if let date = self.date(from: text) {
             dateFormat = "h:mm a"
