@@ -17,7 +17,7 @@ struct HomeView: View {
                         Text("Qibla")
                     }
             }
-            PrayerTimeTableView().environmentObject(PrayerViewModel())
+            PrayerTimeTableView(prayerViewModel: PrayerViewModel())
                 .tabItem {
                     VStack {
                         Image(systemName: "person.circle")
@@ -28,7 +28,7 @@ struct HomeView: View {
                 .tabItem {
                     VStack {
                         Image(systemName: "list.bullet.rectangle")
-                        Text("God names")
+                        Text("God Names")
                     }
                 }
         }.onAppear {

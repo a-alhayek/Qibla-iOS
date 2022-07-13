@@ -9,8 +9,8 @@ import SwiftUI
 import Combine
 
 struct PrayerTimeTableView: View {
-    @EnvironmentObject var prayerViewModel: PrayerViewModel
-    
+    @ObservedObject var prayerViewModel: PrayerViewModel
+    let loclizedMethodTitle = LocalizedStringKey("Prayers time calculation method")
     var salat: [SalatNameAndTime] {
         prayerViewModel.prayerTime
     }
@@ -43,6 +43,8 @@ struct PrayerTimeTableView: View {
             List(salat) { salatNameAndTime in
                 PrayerTimeCellView(salatAndTime: salatNameAndTime)
             }
+            Text(loclizedMethodTitle)
+                .font(.title3)
             Picker(selection: $prayerViewModel.timeMethod) {
                 ForEach(PrayerTimeMehod.allCases) { element in
                     Text(element.textRepresentation)
@@ -50,9 +52,10 @@ struct PrayerTimeTableView: View {
                 }
                 
             } label: {
-                Text(PrayerTimeMehod(rawValue: prayerViewModel.timeMethod)!
-                    .textRepresentation)
+                    Text(PrayerTimeMehod(rawValue: prayerViewModel.timeMethod)!
+                        .textRepresentation)
             }
+            Spacer()
         }
         .onAppear {
             bindsViewModel()
@@ -70,7 +73,7 @@ struct PrayerTimeTableView: View {
 
 struct PrayerTimeTableView_Previews: PreviewProvider {
     static var previews: some View {
-        PrayerTimeTableView().environmentObject(PrayerViewModel())
+        PrayerTimeTableView(prayerViewModel: PrayerViewModel())
     }
 }
 
