@@ -11,14 +11,21 @@ import Combine
 class GBNamesManagerImpl {
     private let gbNClient: GBNamesClient
     private var cancellables: Set<AnyCancellable> = .init()
-    init (gbNClient: GBNamesClient) {
+    init (gbNClient: GBNamesClient = QiblaClientImp()) {
         self.gbNClient = gbNClient
     }
 
     func getGBNames() {
         gbNClient.getGBNames()
             .receive(on: DispatchQueue.global(qos: .background))
-            .sink(receiveValue: { response in
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    ()
+                case .failure(let error):
+                    print(error.description)
+                }
+            },receiveValue: { response in
                 Task { [weak self] in
                     guard let self = self else { return }
                     await self.saveNames(response.data)
@@ -27,11 +34,10 @@ class GBNamesManagerImpl {
     }
 
     private func saveNames(_ names: [GBName]) async {
-        let realm = try? await RealmDatabaseRepository.makeRealm()
-        guard let realm = realm else {
-            print("failed to create realm in GBNamesManager")
-            return
+        let realm = try! await RealmDatabaseRepository.makeRealm()
+        try! realm.write {
+            realm.add(names)
         }
-        realm.add(names)
+        
     }
 }

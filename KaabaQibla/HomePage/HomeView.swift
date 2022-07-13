@@ -24,6 +24,13 @@ struct HomeView: View {
                         Text("Prayer Time")
                     }
                 }
+            GBNamesListView(viewModel: GBNamesViewModel())
+                .tabItem {
+                    VStack {
+                        Image(systemName: "list.bullet.rectangle")
+                        Text("God names")
+                    }
+                }
         }.onAppear {
             let notificationManager = NotificationManagerImp.current()
             switch notificationManager.settings {

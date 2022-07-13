@@ -64,10 +64,10 @@ protocol QiblaClient {
 }
 
 protocol GBNamesClient {
-    func getGBNames() -> AnyPublisher<GBNamesResponse, Never>
+    func getGBNames() -> AnyPublisher<GBNamesResponse, NetworkError>
 }
 
-final class QiblaClientImp: QiblaClient {
+final class QiblaClientImp: QiblaClient, GBNamesClient {
     let restClient: RestClient
 
     init(restClient: RestClient = RestClient()) {
@@ -77,6 +77,10 @@ final class QiblaClientImp: QiblaClient {
     func getQibla(for coordinate: CLLocationCoordinate2D) -> AnyPublisher<KaabaHeading, NetworkError> {
       restClient.preform(req: QiblaRoutes.qiblaDirection(coordinate: coordinate)).eraseToAnyPublisher()
   }
+
+    func getGBNames() -> AnyPublisher<GBNamesResponse, NetworkError> {
+        restClient.preform(req: QiblaRoutes.GodBeautifulNames).eraseToAnyPublisher()
+    }
   
 }
 

@@ -36,20 +36,21 @@ enum AladahnRealmConfig: String {
 }
 
 public protocol RealmMigration {
-    var objectTypes: [Object.Type]? { get }
+    var objectTypes: [ObjectBase.Type]? { get }
     var migrationBlock: MigrationBlock? { get }
     var deleteRealmIfMigrationNeeded: Bool { get }
 }
 
 class AladahnMigration: RealmMigration {
-    let objectTypes: [Object.Type]? = [AladahnDate.self,
+    let objectTypes: [ObjectBase.Type]? = [AladahnDate.self,
                                        PrayerDate.self,
                                        PrayerTime.self,
                                        AladahnPrayerTimeAndDate.self,
                                        PrayerMethod.self,
                                        Month.self,
                                        Weekday.self,
-                                       GBName.self
+                                       GBName.self,
+                                       Translation.self
                                        ]
     
     var migrationBlock: MigrationBlock?
